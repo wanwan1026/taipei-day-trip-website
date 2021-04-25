@@ -28,110 +28,154 @@ def attractions():
 	page = (request.args.get("page",""))
 	keyword = (request.args.get("keyword","",))
 	keyword = keyword.replace('\"','')
+	
+	signup = pymysql.connect(
+		host='localhost',
+		user='root',
+		password='rice1026', #記得改
+		db='taipei',
+		cursorclass=pymysql.cursors.DictCursor
+		)
+	with signup.cursor() as cursor:
+		mysqlact = "SELECT * FROM `taipeidata`"
+		cursor.execute(mysqlact,)
+		result_page = cursor.fetchall()
+	signup.close()
 
+	if page != "" :
+		if page.isdigit() == False :
+			error = {"error": "true" , "message":"查無項目"}
+			return error
+		if len(result_page) % 12 == 0 :
+			if int(page) in range(0,len(result_page) // 12 ) :
+				page = int(page)
+			else :
+				error = {"error": "true" , "message":"查無項目"}
+				return error
+		if len(result_page) % 12 != 0 :
+			if int(page) in range(0,len(result_page) // 12 + 1 ) :
+				page = int(page)
+			else :
+				error = {"error": "true" , "message":"查無項目"}
+				return error
+		else :
+			error = {"error": "true" , "message":"查無項目"}
+			return error
+			
+
+	if keyword != "" :
+		signup = pymysql.connect(
+			host='localhost',
+			user='root',
+			password='rice1026', #記得改
+			db='taipei',
+			cursorclass=pymysql.cursors.DictCursor
+			)
+		with signup.cursor() as cursor:
+			mysqlact = "SELECT * FROM `taipeidata` WHERE position(%s in `name`)"
+			cursor.execute(mysqlact,keyword)
+			result_keyword = cursor.fetchall()
+		signup.close()
+
+		if len(result_keyword) == 0 :
+			error = {"error": "true" , "message":"查無項目"}
+			return error
+	
 	if page != "" and keyword =="" :
-		signup = pymysql.connect(
-			host='localhost',
-			user='root',
-			password='rice1026', #記得改
-			db='taipei',
-			cursorclass=pymysql.cursors.DictCursor
-			)
-		with signup.cursor() as cursor:
-			mysqlact = "SELECT * FROM `taipeidata`"
-			cursor.execute(mysqlact,)
-			result = cursor.fetchall()
-		signup.close()  
+		page_data = {}
+		all_page = []
 
-		if int(page) < len(result) // 12 and int(page) >= 0 :
-			page_data = {}
-			all_page = []
-			for i in range(int(page)*12,((int(page)+1)*12)) : 
-				all_page.append(result[i])
-			page_data["data"] = all_page
-			page_data["nextPage"] = int(page) +1
-			return page_data
-		else :
-			error = {"error": "true" , "message":"查無項目"}
-			return error
+		if len(result_page) % 12 == 0 :
+			if page > len(result_page) // 12 :
+				error = {"error": "true" , "message":"查無項目"}
+				return error
+			if page == len(result_page) // 12 :
+				page_data["nextPage"] = "null"
+				for i in range(page*12,len(result_page)) :
+					all_page.append(result_page[i])
+				page_data["data"] = all_page
+				return page_data
+			if page < len(result_page) // 12 :
+				page_data["nextPage"] = page + 1
+				for i in range(page*12,((page+1)*12)) :
+					all_page.append(result_page[i])
+				page_data["data"] = all_page
+				return page_data
+		if len(result_page) % 12 != 0 :
+			if page > len(result_page) // 12 :
+				error = {"error": "true" , "message":"查無項目"}
+				return error
+			if page == len(result_page) // 12 :
+				page_data["nextPage"] = "null"
+				for i in range(page*12,len(result_page)) :
+					all_page.append(result_page[i])
+				page_data["data"] = all_page
+				return page_data
+			if page < len(result_page) // 12 :
+				page_data["nextPage"] = page + 1
+				for i in range(page*12,((page+1)*12)) :
+					all_page.append(result_page[i])
+				page_data["data"] = all_page
+				return page_data
+	
 	if page == "" and keyword != "" :
-		signup = pymysql.connect(
-			host='localhost',
-			user='root',
-			password='rice1026', #記得改
-			db='taipei',
-			cursorclass=pymysql.cursors.DictCursor
-			)
-		with signup.cursor() as cursor:
-			mysqlact = "SELECT * FROM `taipeidata` WHERE position(%s in `name`)"
-			cursor.execute(mysqlact,keyword)
-			result = cursor.fetchall()
-		signup.close()
+		keyword_data = {}
+		all_keyword = []
+		if len(result_keyword) <= 12 :
+			keyword_data["nextPage"] = "null"
+			for i in range(len(result_keyword)):
+				all_keyword.append(result_keyword[i])
+		if len(result_keyword) > 12 :
+			keyword_data["nextPage"] = 1
+			for i in range(12):
+				all_keyword.append(result_keyword[i])
+		keyword_data["data"] = all_keyword
+		return keyword_data
 
-		if len(result) < 0 :
-			error = {"error": "true" , "message":"查無項目"}
-			return error
-		if len(result) > -1 :
-			if len(result) <= 12 :
-				keyword_data = {}
-				page = 0
-				all_keyword = []
-				for i in range(len(result)):
-					all_keyword.append(result[i])
-				keyword_data["data"] = all_keyword
-				keyword_data["nextPage"] = page +1
-				return keyword_data
-			if len(result) > 12 :
-				keyword_data = {}
-				page = 0
-				all_keyword = []
-				for i in range(12):
-					all_keyword.append(result[i])
-				keyword_data["data"] = all_keyword
-				keyword_data["nextPage"] = page +1
-				return keyword_data
 	if page != "" and keyword != "" :
-		signup = pymysql.connect(
-			host='localhost',
-			user='root',
-			password='rice1026', #記得改
-			db='taipei',
-			cursorclass=pymysql.cursors.DictCursor
-			)
-		with signup.cursor() as cursor:
-			mysqlact = "SELECT * FROM `taipeidata` WHERE position(%s in `name`)"
-			cursor.execute(mysqlact,keyword)
-			result = cursor.fetchall()
-		signup.close()
+		keyword_data = {}
+		all_keyword = []
 
-		if len(result) > -1 and int(page) <= len(result) // 12 and int(page) >= 0 :
-			if len(result) <= 12 :
-				keyword_data = {}
-				page = 0
-				all_keyword = []
-				for i in range(len(result)):
-					all_keyword.append(result[i])
+		if len(result_keyword) % 12 == 0 :
+			if page > len(result_keyword) // 12 - 1 :
+				error = {"error": "true" , "message":"查無項目"}
+				return error
+			if page == len(result_keyword) // 12 - 1 :
+				keyword_data["nextPage"] = "null"
+				for i in range(page*12,len(result_keyword)) :
+					all_keyword.append(result_keyword[i])
 				keyword_data["data"] = all_keyword
-				keyword_data["nextPage"] = page +1
 				return keyword_data
-			if len(result) > 12 :
-				keyword_data = {}
-				all_keyword = []
-				for i in range((int(page)*12,((int(page)+1)*12))) :
-					all_keyword.append(result[i])
+			if page < len(result_keyword) // 12 - 1 :
+				keyword_data["nextPage"] = page + 1
+				for i in range(page*12,((page+1)*12)) :
+					all_keyword.append(result_keyword[i])
 				keyword_data["data"] = all_keyword
-				keyword_data["nextPage"] = page +1
 				return keyword_data
-		else :
-			error = {"error": "true" , "message":"查無項目"}
-			return error
-	if page == "" and keyword == "" :
+		if len(result_keyword) % 12 != 0 :
+			if page > len(result_keyword) // 12 :
+				error = {"error": "true" , "message":"查無項目"}
+				return error
+			if page == len(result_keyword) // 12 :
+				keyword_data["nextPage"] = "null"
+				for i in range(page*12,len(result_keyword)) :
+					all_keyword.append(result_keyword[i])
+				keyword_data["data"] = all_keyword
+				return keyword_data
+			if page < len(result_keyword) // 12 :
+				keyword_data["nextPage"] = page + 1
+				for i in range(page*12,((page+1)*12)) :
+					all_keyword.append(result_keyword[i])
+				keyword_data["data"] = all_keyword
+				return keyword_data
+	
+	else :
 		error = {"error": "true" , "message":"查無項目"}
 		return error
-	
+
 @app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
-	if "-" in attractionId :
+	if attractionId.isdigit() == False :
 		error = {"error": "true" , "message":"查無項目"}
 		return error
 
@@ -148,7 +192,7 @@ def api_attraction(attractionId):
 		result = cursor.fetchall()
 	signup.close()
 	
-	if int(attractionId) < len(result) and int(attractionId) > 0:	
+	if int(attractionId) < len(result) + 1 and int(attractionId) > 0:	
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
