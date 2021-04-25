@@ -175,7 +175,7 @@ def attractions():
 
 @app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
-	if attractionId.isdigit() == False :
+	if "-" in attractionId :
 		error = {"error": "true" , "message":"查無項目"}
 		return error
 
@@ -191,8 +191,8 @@ def api_attraction(attractionId):
 		cursor.execute(mysqlact,)
 		result = cursor.fetchall()
 	signup.close()
-	
-	if int(attractionId) < len(result) + 1 and int(attractionId) > 0:	
+
+	if int(attractionId) < len(result) and int(attractionId) > 0:	
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
