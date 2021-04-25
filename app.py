@@ -173,9 +173,8 @@ def attractions():
 		error = {"error": "true" , "message":"查無項目"}
 		return error
 
-@app.route("/api/attraction/<attractionId>" )
+@app.route("/api/attraction/<attractionId>")
 def api_attraction(attractionId):
-	
 	if attractionId.isdigit() is  False :
 		error = {"error": "true" , "message":"查無項目"}
 		return error
