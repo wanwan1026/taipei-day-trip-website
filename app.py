@@ -173,8 +173,9 @@ def attractions():
 		error = {"error": "true" , "message":"查無項目"}
 		return error
 
-@app.route("/api/attraction/<attractionId>")
+@app.route("/api/attraction/<attractionId>" )
 def api_attraction(attractionId):
+	
 	if attractionId.isdigit() is  False :
 		error = {"error": "true" , "message":"查無項目"}
 		return error
@@ -210,6 +211,10 @@ def api_attraction(attractionId):
 	else :
 		error = {"error": "true" , "message":"查無項目"}
 		return error
+@app.route("/api/attraction/" )
+def api_error():
+	error = {"error": "true" , "message":"查無項目"}
+	return jsonify(error)
 
 app.run(port=3000)
 # app.run(host="0.0.0.0",port=3000) 
