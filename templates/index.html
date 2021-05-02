@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html style="position: relative;min-height: 100%;overflow-x: hidden;">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <title>台北一日遊</title>
+        <style>
+            .body{
+                margin-bottom: 60px;
+                width: 1920px;
+                background: #FFFFFF;
+                overflow:hidden;
+            }
+            /* 導覽列 (外層)*/
+            .header_background{
+                position:fixed;
+                z-index:1;
+
+                width: 100%;
+                height: 54px;
+                background: #FFFFFF;
+
+                left: 0px;
+                top: 0px;
+                /* background-color: lightcoral; */
+            }
+            /* 導覽列 (內層)*/
+            .header{
+                max-width: 1200px;
+                height: 34px;
+                text-align: center;
+                margin: 10px auto;
+                /* background-color: lawngreen; */
+                
+            }
+            /* 導覽列 (內容)*/
+            .logo{
+                width: 150px;
+                height: 34px;
+                line-height: 34px;
+                font-size: 30px;
+                font-weight: bold;
+                font-style: normal; 
+                font-family: Noto Sans;
+                color: #448899;    
+
+                /* background-color: lightskyblue; */
+                display:block;
+                float:left;
+                padding-left: 10px;        
+                
+            }
+            .frame{
+                width: 175px;
+                height: 34px;
+                display:block;
+                float:right;
+                padding-right: 10px;
+                
+                /* background-color: lightslategray; */
+            }
+            nav{
+                width: 175px;
+                height: 34px;
+                /* 排版 */
+                position: static;
+                left: 0px;
+                top: 0px;
+                /* flex */
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 0px;
+
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 0px 0px;
+            }
+            nav button{
+                background:transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .nav_1{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 10px;
+
+                position: static;
+                left: 0%;
+                right: 52%;
+                top: 0%;
+                bottom: 0%;
+
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 0px 0px;
+            }
+            .nav_1_word{
+                position: static;
+                left: 11.9%;
+                right: 11.9%;
+                top: 29.41%;
+                bottom: 29.41%;
+
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 13px;
+
+                color: #666666;
+
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 10px 0px;
+            }
+            .nav_2{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 10px;
+
+                position: static;
+                left: 48%;
+                right: 0%;
+                top: 0%;
+                bottom: 0%;
+
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+                margin: 0px 0px;
+            }
+            .nav_2_word{
+                position: static;
+                left: 10.99%;
+                right: 10.99%;
+                top: 29.41%;
+                bottom: 29.41%;
+
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 13px;
+
+                color: #666666;
+
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 10px 0px;
+            }
+            /* 搜尋區 (背景)*/
+            .background{
+                z-index: -2;
+                max-width: 1920px;
+                
+                height: 320px;
+                right: 0px;
+                bottom: 1000px;
+                top: 20px;
+
+                margin-left: -7px;
+                margin-right: -7px;
+                padding: 10px;
+                /* position: static; */
+                /* display: flex; */
+
+                background: linear-gradient(135deg, #AADDEE 0%, #66AABB 100%);
+               
+            }
+            .back_box{
+                z-index: -1;
+                max-width: 1200px;
+                height: 34px;
+                /* text-align: center; */
+                margin: 10px auto;
+                /* background-color: lawngreen; */
+                display: flex;
+                justify-content: flex-end;
+                
+            }
+            .background_photo{
+                
+                width: 650px;
+                height: 320px; 
+                
+                flex: none;
+                margin: 0px 0px;
+
+                background: url(https://s3-alpha-sig.figma.com/img/7f11/61f9/05b5cacde05a250ac06b6807d14ef29b?Expires=1620604800&Signature=XEydFDZ5IbE5Bwzlq-G5MGEZHHsl4Ncbdw2VbRj0-pUHjUYsvqUsPdgZORtOE7YcQdyWxXGtNaq0hkao6sdrFoi9YG6fJ5ucFfE6qQ4F1xJPZHNyKdpwhpnNmIc9hLg2PsAjWdCw8Ep~7May07CM7OQyRwVEJ14iOolrXfkVTtAgSyDpM5-DevfU3R2CdgKlTre3S0q~SCsA0HmUb~MNpX7fPsGNRNIM6RHjVXJVz6T67az6aOltxz1C4J9dge8btPnHyWaAXhBN2obpHbH4194-WjaV8tCfUvi2Nh5L9-Xkc8ffOmQxFURau2LaIbZC243v31tCDQ~o7OumIdR9Vw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background-size: cover;
+
+                /* background-color: mediumpurple; */
+            }
+            /* 搜尋區 (內容)*/
+            .search{
+                position:relative;
+                z-index: 0;
+                max-width: 1180px;
+                height: 149px;
+                margin: 10px auto;
+                margin-top: 70px;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+                
+                /* background-color: olive; */
+            }
+            /* .search{
+                z-index: 1;
+                position: absolute;
+                width: 1180px;
+                height: 149px;
+                left: 370px;
+                top: 105px;
+
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                margin: 10px 0px;
+                
+                background-color: mediumspringgreen;
+            } */
+            .slogan{
+                position: static;
+                /* width: 1180px; */
+                height: 78px;
+                left: 0px;
+                top: 0px;
+                flex: 1;
+                
+                /* background-color: midnightblue; */
+
+                display: flex;
+                flex-direction: column;
+            }
+            .slogan_text1{  
+                position: static;
+                /* width: 1180px; */
+                height: 41px;
+                
+                margin-top: 10px;
+
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 28px;
+                line-height: 24px;
+
+                color: #F8F8F8;
+
+                text-shadow: 0px 0px 30px #AABBCC;
+            }
+            .slogan_text2{
+                position: static;
+                /* width: 1180px; */
+                height: 22px;
+
+                margin-top: 15px;
+
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 13px;
+
+                color: #F8F8F8;
+            }
+            /* 搜尋區 (輸入框)*/
+            .slogan_div_search{
+                position: static;
+                /* width: 1180px; */
+                height: 46px;
+                left: -590px;
+                top: 103px;
+
+                /* background-color: palegoldenrod; */
+            }
+            .slogan_div_search_search{
+                position: static;
+                width: 460px;
+                height: 46px;
+                left: 0px;
+                top: 0px;
+
+                display: flex;
+                flex-direction: row;
+
+            }
+            .search_input{
+                position: static;
+                width: 400px;
+                height: 46px;
+                
+                filter: drop-shadow(0px 0px 20px #AABBCC);
+                /* background-color: palegreen; */
+            }
+            .search_input_input{
+                position: static;
+                width: 400px;
+                height: 46px;
+                left: 0px;
+                top: 0px;
+                
+                background: #FFFFFF;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+            .search_input_input_input{
+                position: static;
+                width: 370px;
+                height: 16px;
+                
+                padding: 15px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 20px;
+                line-height: 13px;
+
+                display: flex;
+                align-items: center;
+
+                color: #757575;
+
+                outline:none;border:0;
+                /* background-color: palevioletred; */
+            }
+            /* 搜尋區 (按鈕)*/
+            .search_btn{
+                position: static;
+                width: 60px;
+                height: 46px;
+                left: 400px;
+                top: 0px;
+
+                /* background-color: peru; */
+            }
+            .search_btn_btn{
+                position: static;
+                width: 60px;
+                height: 46px;
+                left: 0px;
+                top: 0px;
+
+                background: #448899;
+                border-color: #448899;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .search_btn_icon{
+                position: static;
+                width: 30px;
+                height: 30px;
+                left: 15px;
+                top: 8px;
+            }
+            .search_btn_icon_icon{
+                position: static;
+                width: 30px;
+                height: 30px;
+
+                margin-left: 3px;
+                padding: 2px;
+
+                left: 0px;
+                top: 0px;
+                background: url(https://s3-alpha-sig.figma.com/img/2287/3bf8/d5750c31481dec07f7101a5fb69baa37?Expires=1620604800&Signature=L5E59y-QN3WuMmhaXpuECrAPs~wFNpbXZYdKGuwiH5VzVeBdLGAr2q6NmkkdAvRNKZwWPD5bYwNjA349KSVO5ibnNYmri7V5RHq8CPvUbZW7if72NamkdtMlgSgoQFOR4hNWMNwd5NccC2lLEGGijTZnyQRR6nOntbgN9rTtjVeWMf6weNVbWainYBb1wrN6Do7XKb86VgXtbNqZrs~6ISEv~gL1Jp2-nKhzkAjBb9d4J~7xzHHr4B3jKlDXNTNzjZ9o0BGKslkabFLkvZ513TfQRJJ3VTwFTfxpO0Yo1iUtBPhf0AaIJ6KUppAZsDnmNe8NzTJU2W-L4CLap24weA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background-size: contain;
+            }
+            /* 內容 */
+            .attractions{
+                width:1200px;
+		    	text-align:center; 
+	    		margin-left:auto; 
+		    	margin-right:auto;
+		    	margin-top:80px; 
+		    	margin-bottom:200px;
+
+                /* background-color: black; */
+
+                position: static;
+                padding-bottom: 30px;
+            }
+            .attractions_group{
+                position: relative;
+		    	width: 1170px;
+                top: 15px;
+                left: 15px;
+                vertical-align:middle;
+                /* background-color: blanchedalmond; */
+
+                display: flex;
+                gap: 30px; /* 間細 */
+                flex-wrap: wrap; /* 判斷換行 */
+            }
+            .attraction{
+                position: relative;
+                width: 270px;
+                height: 242px;
+
+                background: #FFFFFF;
+                border-radius: 5px;
+
+                display:inline-block;
+                vertical-align: top;
+
+            }
+            .attraction_attraction{
+                position: relative;
+                width: 270px;
+                height: 242px;
+                left: 0px;
+                top: 0px;
+
+                border: 1px solid #E8E8E8;
+                box-sizing: border-box;
+                border-radius: 5px;
+                
+            }
+            .img{
+                position: absolute;
+                width: 268px;
+                height: 160px;
+                left: 1px;
+                top: 1px;
+            }
+            .photo{
+                position: absolute;
+                width: 268.5px;
+                height: 160px;
+                left: -1px;
+                top: -1px;
+
+            }
+            .text{
+                position: absolute;
+                width: 250px;
+                height: 22px;
+                left: 10px;
+                top: 173px;
+                
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 13px;
+                
+                display: flex;
+                align-items: center;
+                
+                color: #757575;
+            }
+            .text1{
+                position: absolute;
+                width: 125px;
+                height: 20px;
+                left: 10px;
+                top: 210px;
+                
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 13px;
+                
+                display: flex;
+                align-items: center;
+                
+                color: #757575;
+            }
+            .text2{
+                position: absolute;
+                width: 125px;
+                height: 20px;
+                left: 195.5px;
+                top: 210px; 
+                
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 13px;
+                
+                display: flex;
+                align-items: center;
+                text-align: right;
+                
+                color: #757575;
+            }
+            /* 頁尾 */
+            .footer{
+                /* position: absolute; */
+                bottom: 0px;
+                max-width: 1920px;
+                
+                height: 104px;
+
+                margin: -7.5px;
+                background: #757575;
+
+                display: flex;
+                align-items: center;
+                /* text-align:center; */
+
+            }
+            .footer_div{
+                /* position: relative; */
+                width: 234px;
+                height: 10px;
+                /* left: 843px; */
+                /* top: 40px; */
+                /* text-align: center; */
+
+                /* flex: none; */
+                /* order: 0; */
+                /* flex-grow: 0; */
+                /* margin: 0px 0px; */
+                /* background-color: blanchedalmond; */
+                line-height:10px;
+                
+                margin:0 auto;
+                /* margin-top: 20px; */
+            }
+            .footer_div_test{
+                position: static;
+                width: 250px;
+                height: 14px;
+                left: 0px;
+                top: 5px;
+
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 13px;
+
+                display: flex;
+                align-items: center;
+                color: #FFFFFF;
+            }
+            /* 比例調整重製 */
+            @media (max-width:1295px){
+                .background{min-width: 1200px;}
+                .footer{min-width: 1200px;}
+            }
+            @media (max-width:550px){
+                html,body{overflow-x: hidden;margin: 0px;}
+                .background{min-width: 0px;}
+                .footer{min-width: 0px;}
+
+                .slogan_text1{margin-left: 2px;}
+                .slogan_text2{margin-left: 2px;}
+                
+                .slogan_div_search_search{width: 150px;margin-left: 2px;}
+                .search_input{width: 150px;margin-left: 2px;}
+                .search_input_input{width: 150px;margin-left: 2px;}
+                .search_input_input_input{width: 150px;font-size: 14px;}
+                .search_btn{margin-left: 31px;}
+                
+                
+                .background_photo{width: 300px;height: 148px;}
+                .background_photo{margin-top: 172px;margin-right: -60px;}
+
+                .attractions{width: 350px;}
+                .attractions_group{width: 320px;}
+                .attraction{width: 320px;height: 310px;}
+                .attraction_attraction{width: 320px;height: 310px;}
+                .img{width: 318px;height: 196px;}
+                .photo{width: 318.5px;height: 196px;}
+                .text{width: 280px; height: 60px;font-size:25px;top: 200px;line-height: 26px;}
+                .text1{width: 180px;height: 30px;font-size:25px;top: 270px;line-height: 26px;}
+                .text2{width: 100px;height: 30x;font-size:25px;top: 275px;left: 205px;line-height: 26px;}
+
+            }
+            @media (max-width:330px){
+                .frame{width: 128px}
+                .nav{width: 128px;height: 20px}
+                .nav_1{width: 70px;}
+                .nav_2{width: 80px;}
+                .nav_1_word{font-size: 7px;}
+                .nav_2_word{font-size: 7px;}
+
+                .logo{font-size: 16px;width: 90px;}
+                .header{width: 270px;margin-left: -11px;}
+
+                .slogan_text1{font-size: 22px;}
+                .slogan_text2{font-size: 12px;}
+
+                .slogan_div_search_search{width: 120px;margin-left: 2px;}
+                .search_input{width: 120px;margin-left: 2px;}
+                .search_input_input{width: 120px;margin-left: 2px;}
+                .search_input_input_input{width: 120px;font-size: 12px;}
+                .search_btn{margin-left: 31px;}
+
+                .attractions{width: 250px;}
+                .attractions_group{width: 220px;}
+                .attraction{width: 220px;height: 230px;}
+                .attraction_attraction{width: 220px;height: 230px;}
+                .img{width: 218px;height: 156px;}
+                .photo{width: 218.5px;height: 156px;}
+                .text{width: 200px; height: 38px;font-size:18px;top: 160px;line-height: 20px;}
+                .text1{width: 122px;height: 38px;font-size:18px;top: 193px;line-height: 20px;}
+                .text2{width: 78px;height: 38x;font-size:18px;top: 202px;left: 140px;line-height: 20px;}
+            }
+        </style>
+    </head>
+    <body onload="getdata();">
+        <!-- 導覽列 -->
+        <header class="header_background">
+            <div class="header">
+                <div class="logo">
+                    <a>台北一日遊</a>
+                </div>
+                <div class="frame">
+                    <nav>
+                        <button class="nav_1"><a class="nav_1_word">預定行程</a></button>
+                        <button class="nav_2"><a class="nav_2_word">登入/註冊</a></button>
+                    </nav>
+                </div> 
+            </div>     
+        </header>
+        <!-- 搜尋區 -->
+        <section>
+            <div class="background">
+                <div class="back_box">
+                    <div class="background_photo"></div>
+                </div>
+                <!-- <div class="search_box"></div> -->
+                <div class="search">
+                    <div class="slogan">
+                        <a class="slogan_text1">輕鬆享受台北一日悠閒</a>
+                        <a class="slogan_text2">探索每個角落，體驗城市的深度旅遊行程</a> 
+                    </div>
+                    <div class="slogan_div_search">
+                        <div class="slogan_div_search_search">
+                            <div class="search_input">
+                                <div class="search_input_input">
+                                    <input class="search_input_input_input " placeholder="請輸入景點名稱查詢" id="attractions"/>
+                                </div>
+                            </div>
+                            <div class="search_btn">
+                                <button class="search_btn_btn" onclick="search();" >
+                                    <div class="search_btn_icon">
+                                        <div class="search_btn_icon_icon"></div>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        <!-- 內容 -->
+        <main class="attractions">
+            <div class="attractions_group" id="attractions_group_div"></div>
+        </main>
+        <!-- 頁尾 -->
+        <footer class="footer">
+            <div class="footer_div">
+                <div class="footer_div_test">COPYRIGHT © 2021 台北一日遊</div>
+            </div>  
+        </footer>
+        <!-- 動態設定 -->
+        <script type="text/javascript">
+            //頁數
+            let nextpage;
+            //判斷是否有查詢資料的動作
+            let search_text = false;
+            //判斷滾動請求是否完成
+            let page_act = false;
+            function getdata(){   
+                // 載入初始資料
+                let req="http://18.182.175.66:3000/api/attractions?page=0";
+				fetch(req)
+                .then(function(response){
+				    return response.json();
+				}).then(function(result){
+
+                    nextpage = result["nextPage"];
+
+                    for(let i = 0 ; i < result["data"].length ; i++ ){
+                        let photo_url = JSON.stringify(result["data"][i]["images"]);
+                        photo_url = photo_url.split("'");
+                        let photo = photo_url[1];
+                        let text = result["data"][i]["name"];
+                        let text1 = result["data"][i]["mrt"];
+                        let text2 = result["data"][i]["category"];
+
+                        let attractions_group_div = document.getElementById("attractions_group_div");
+                        let attraction_div = document.createElement("div");
+                        let attraction_attraction_div = document.createElement("div");
+                        let img_div = document.createElement("div");
+                        let photo_div = document.createElement("div");
+                        let text_div = document.createElement("div");
+                        let text1_div = document.createElement("div");
+                        let text2_div = document.createElement("div");
+
+                        photo_div.setAttribute('style',`background: url(${photo});background-size: cover;border-top-left-radius: 5px;border-top-right-radius: 5px;`);
+                        photo_div.className = "photo";
+                        img_div.appendChild(photo_div);
+                        img_div.className = "img";
+                        attraction_attraction_div.appendChild(img_div);
+
+                        let tx = document.createTextNode(text);
+                        let tx1 = document.createTextNode(text1);
+                        let tx2 = document.createTextNode(text2);
+                        text_div.appendChild(tx);
+                        text_div.className = "text";
+                        text1_div.appendChild(tx1);
+                        text1_div.className = "text1";
+                        text2_div.appendChild(tx2);
+                        text2_div.className = "text2";
+                        attraction_attraction_div.appendChild(text_div);
+                        attraction_attraction_div.appendChild(text1_div);
+                        attraction_attraction_div.appendChild(text2_div);
+
+                        attraction_attraction_div.className = "attraction_attraction"
+                        attraction_div.appendChild(attraction_attraction_div);
+                        attraction_div.className = "attraction";
+                        attractions_group_div.appendChild(attraction_div);
+                    } 
+				})
+                // 滾動效果
+                function ScrollEvent() {
+                    let wScrollY = window.scrollY;
+                    let wInnerH = window.innerHeight;
+                    let bScrollH = document.body.scrollHeight;
+
+                    if (wScrollY + wInnerH >= bScrollH - 150 && page_act == false && search_text == false){
+
+                        page_act = true;
+
+                        if(nextpage != "null"){
+                            req=`http://18.182.175.66:3000/api/attractions?page=${nextpage}`;
+                            fetch(req)
+                            .then(function(response){
+                                return response.json();
+                            }).then(function(result){
+                                nextpage = result["nextPage"];
+
+                                for(let i = 0 ; i < result["data"].length ; i++ ){
+                                    photo_url = JSON.stringify(result["data"][i]["images"]);
+                                    photo_url = photo_url.split("'");
+                                    photo = photo_url[1];
+                                    text = result["data"][i]["name"];
+                                    text1 = result["data"][i]["mrt"];
+                                    text2 = result["data"][i]["category"];
+
+                                    attractions_group_div = document.getElementById("attractions_group_div");
+                                    attraction_div = document.createElement("div");
+                                    attraction_attraction_div = document.createElement("div");
+                                    img_div = document.createElement("div");
+                                    photo_div = document.createElement("div");
+                                    text_div = document.createElement("div");
+                                    text1_div = document.createElement("div");
+                                    text2_div = document.createElement("div");
+
+                                    photo_div.setAttribute('style',`background: url(${photo});background-size: cover;border-top-left-radius: 5px;border-top-right-radius: 5px;`);
+                                    photo_div.className = "photo";
+                                    img_div.appendChild(photo_div);
+                                    img_div.className = "img";
+                                    attraction_attraction_div.appendChild(img_div);
+
+                                    tx = document.createTextNode(text);
+                                    tx1 = document.createTextNode(text1);
+                                    tx2 = document.createTextNode(text2);
+                                    text_div.appendChild(tx);
+                                    text_div.className = "text";
+                                    text1_div.appendChild(tx1);
+                                    text1_div.className = "text1";
+                                    text2_div.appendChild(tx2);
+                                    text2_div.className = "text2";
+                                    attraction_attraction_div.appendChild(text_div);
+                                    attraction_attraction_div.appendChild(text1_div);
+                                    attraction_attraction_div.appendChild(text2_div);
+
+                                    attraction_attraction_div.className = "attraction_attraction"
+                                    attraction_div.appendChild(attraction_attraction_div);
+                                    attraction_div.className = "attraction";
+                                    attractions_group_div.appendChild(attraction_div);
+                                }
+                                
+                                page_act = false;
+                            })
+                        }
+                        if(nextpage == "null"){
+                            page_act = true;
+                        }
+                    }
+                }
+                window.addEventListener('scroll',ScrollEvent);  
+            }
+            // 查詢關鍵字
+            let startcalc;
+            //判斷滾動請求是否完成
+            let page_act_act = false;
+            function search(){
+                // 清除初始資料
+                clearInterval(startcalc);
+                document.getElementById("attractions_group_div").innerHTML  ="";
+                //讓getdata不要運作
+                search_text = true;
+                // 代入搜尋值
+                let attractions = document.getElementById("attractions");
+                let api=`http://18.182.175.66:3000/api/attractions?page=0&keyword=${attractions.value}`;
+                fetch(api)
+                .then(function(response){
+				    return response.json();
+				}).then(function(result){
+                    
+                    if(JSON.stringify(result).length == 33){
+                        alert("查無相關資訊，請輸入其他關鍵字。");
+                    }
+
+                    nextpage = result["nextPage"];
+                    for(let i = 0 ; i < result["data"].length ; i++ ){
+                        let photo_url = JSON.stringify(result["data"][i]["images"]);
+                        photo_url = photo_url.split("'");
+                        let photo = photo_url[1];
+                        let text = result["data"][i]["name"];
+                        let text1 = result["data"][i]["mrt"];
+                        let text2 = result["data"][i]["category"];
+
+                        let attractions_group_div = document.getElementById("attractions_group_div");
+                        let attraction_div = document.createElement("div");
+                        let attraction_attraction_div = document.createElement("div");
+                        let img_div = document.createElement("div");
+                        let photo_div = document.createElement("div");
+                        let text_div = document.createElement("div");
+                        let text1_div = document.createElement("div");
+                        let text2_div = document.createElement("div");
+
+                        photo_div.setAttribute('style',`background: url(${photo});background-size: cover;border-top-left-radius: 5px;border-top-right-radius: 5px;`);
+                        photo_div.className = "photo";
+                        img_div.appendChild(photo_div);
+                        img_div.className = "img";
+                        attraction_attraction_div.appendChild(img_div);
+
+                        let tx = document.createTextNode(text);
+                        let tx1 = document.createTextNode(text1);
+                        let tx2 = document.createTextNode(text2);
+                        text_div.appendChild(tx);
+                        text_div.className = "text";
+                        text1_div.appendChild(tx1);
+                        text1_div.className = "text1";
+                        text2_div.appendChild(tx2);
+                        text2_div.className = "text2";
+                        attraction_attraction_div.appendChild(text_div);
+                        attraction_attraction_div.appendChild(text1_div);
+                        attraction_attraction_div.appendChild(text2_div);
+
+                        attraction_attraction_div.className = "attraction_attraction"
+                        attraction_div.appendChild(attraction_attraction_div);
+                        attraction_div.className = "attraction";
+                        attractions_group_div.appendChild(attraction_div);
+                    } 
+				})
+                // 滾動效果
+                function ScrollEvent() {
+                    let wScrollY = window.scrollY;
+                    let wInnerH = window.innerHeight;
+                    let bScrollH = document.body.scrollHeight;
+
+                    if (wScrollY + wInnerH >= bScrollH - 150 && page_act_act == false){
+                        
+                        
+                        if(nextpage != "null"){
+                            page_act_act = true;
+                            let search_api=`http://18.182.175.66:3000/api/attractions?page=${nextpage}&keyword=${attractions.value}`;
+                            fetch(search_api)
+                            .then(function(response){
+                                return response.json();
+                            }).then(function(result){
+                                nextpage = result["nextPage"];
+                                
+                                for(let i = 0 ; i < result["data"].length ; i++ ){
+                                    photo_url = JSON.stringify(result["data"][i]["images"]);
+                                    photo_url = photo_url.split("'");
+                                    photo = photo_url[1];
+                                    text = result["data"][i]["name"];
+                                    text1 = result["data"][i]["mrt"];
+                                    text2 = result["data"][i]["category"];
+
+                                    attractions_group_div = document.getElementById("attractions_group_div");
+                                    attraction_div = document.createElement("div");
+                                    attraction_attraction_div = document.createElement("div");
+                                    img_div = document.createElement("div");
+                                    photo_div = document.createElement("div");
+                                    text_div = document.createElement("div");
+                                    text1_div = document.createElement("div");
+                                    text2_div = document.createElement("div");
+
+                                    photo_div.setAttribute('style',`background: url(${photo});background-size: cover;border-top-left-radius: 5px;border-top-right-radius: 5px;`);
+                                    photo_div.className = "photo";
+                                    img_div.appendChild(photo_div);
+                                    img_div.className = "img";
+                                    attraction_attraction_div.appendChild(img_div);
+
+                                    tx = document.createTextNode(text);
+                                    tx1 = document.createTextNode(text1);
+                                    tx2 = document.createTextNode(text2);
+                                    text_div.appendChild(tx);
+                                    text_div.className = "text";
+                                    text1_div.appendChild(tx1);
+                                    text1_div.className = "text1";
+                                    text2_div.appendChild(tx2);
+                                    text2_div.className = "text2";
+                                    attraction_attraction_div.appendChild(text_div);
+                                    attraction_attraction_div.appendChild(text1_div);
+                                    attraction_attraction_div.appendChild(text2_div);
+
+                                    attraction_attraction_div.className = "attraction_attraction"
+                                    attraction_div.appendChild(attraction_attraction_div);
+                                    attraction_div.className = "attraction";
+                                    attractions_group_div.appendChild(attraction_div);
+                                }
+                                
+                                page_act_act = false;
+                            })
+                        }
+                        
+                    }
+                }
+                window.addEventListener('scroll',ScrollEvent);
+            }
+		</script>
+    </body>
+</html>
