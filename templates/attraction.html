@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <style>
+            html{
+                /* 特殊設置 :footer置底 */
+                position: relative;
+                min-height: 100%;
+            }
+            body{
+                /* 基本設置 */
+                max-width: 1920px;
+                background: #FFFFFF;
+                /* 特殊設置 :footer置底 */
+                margin-bottom: 104px;
+                /* 其他設置 */
+                margin: 0px;
+                /* 隱藏橫向卷軸 */
+                overflow-x: hidden;
+            }
+            /* 導覽列 (外層)*/
+            .header_background{
+                /* 基本設置 */
+                width: 100%;
+                height: 54px;
+                background: #FFFFFF;
+                /* 其他設置:凍結窗格 */
+                position:fixed;
+                z-index:1;
+                top: 0px;
+                left: 0px;
+            }
+            /* 導覽列 (內層)*/
+            .header{
+                /* 基本設置 */
+                max-width: 1200px;
+                height: 34px;
+                /* 特殊設置2 :內容左右放置*/
+                margin: 10px auto;
+            }
+            /* 導覽列 (內容)*/
+            .logo{
+                /* 基本設置 */
+                width: 150px;
+                height: 34px;
+                line-height: 34px;
+                font-size: 30px;
+                font-weight: bold;
+                font-style: normal; 
+                font-family: Noto Sans;
+                color: #448899;    
+                /* 特殊設置2 :內容左右放置*/
+                display:block;
+                float:left;
+                /* 其他設置 :左外距*/
+                margin-left: 10px;      
+            }
+            .nav{
+                /* 基本設置 */
+                width: 175px;
+                height: 34px;
+                /* 特殊設置2 :內容左右放置*/
+                display:block;
+                float:right;
+                /* 特殊設置3 :內容左右放置*/
+                margin: 0px auto;
+                /* 其他設置 :右外距*/
+                margin-right: 10px;
+            }
+            .nav_1{
+                /* 特殊設置3 :內容左右放置*/
+                display:block;
+                float:left;
+                /* 其他設置 :透明按鈕 */
+                background: transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .nav_1_word{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 :垂直置中 */
+                height: 34px;
+                line-height: 34px;
+            }
+            .nav_2{
+                /* 特殊設置3 :內容左右放置*/
+                display:block;
+                float:right;
+                /* 其他設置 :透明按鈕 */
+                background: transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .nav_2_word{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 :垂直置中 */
+                height: 34px;
+                line-height: 34px;
+            }
+            /* 主要內容 */
+            .booking{
+                /* 基本設置 */
+                max-width: 1200px;
+                height: 400px;
+                /* 其他設置 :置中/上距/下距 */
+                margin: auto;
+                margin-top: 94px;
+                margin-bottom: 40px;
+            }
+            .photo{
+                /* 基本設置 */
+                width: 540px;
+                height: 400px;
+                /* 特殊設置 :內容左右放置*/
+                display:block;
+                float:left;
+                /* 其他設置 :左距*/
+                margin-left: 15px;   
+            }
+            .photo_btn{
+                /* 基本設置 */
+                width: 540px;
+                height: 400px;
+                /* 絕對定位 */
+                position: absolute;
+                margin-left: 15px;
+            }
+            .photo_left{
+                /* 基本設置 */
+                width: 36px;
+                height: 36px;
+                color: transparent;
+                /* 其他設置 :內容左右放 */
+                display:block;
+                float:left;
+                /* 定位 */
+                margin-left: 10px;
+                margin-top: 185px;
+                /* 含背景的圓型透明按鈕 */
+                background: url(https://s3-alpha-sig.figma.com/img/6778/6302/0ccc5ce8b30b3d331a45ecdf90f129e1?Expires=1621209600&Signature=CcZpjZSSFYg8Cbu6CHi5L1cu32DBp122iTZ63rCV6YxWXjmVNC4O1V7X7MCdk1uGBUuoATifHZpCmh2HlMEfzfqnnLlixnRVAJ092D3~Ej7g3JtXLEtLQR6X8l5Yzt1uUmCxgw6-BXQbfYxvDiYr3YyRjvpat8xD6AKfMLQm0U5jhsHZ2Kkzsx78FH8AUAFzpkesZ1vB6XTow9fb8Y9Hl3wHScYZvlLltpuFb4i77DFhLwucfI6-n0GVU8gllPHdeEHopgF58Y0~0T-zHt-i3jW7Ge9d8nQEldVIEJ~OU52WXNNTr4S1ZxvrjFrfPcE4EMxR0a~3kE~GHj2m5NTwsw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background-size: cover;
+                border-radius: 36px;
+                border-width:0px;
+                outline:none;
+            }
+            .photo_right{
+                /* 基本設置 */
+                width: 36px;
+                height: 36px;
+                color: transparent;
+                /* 其他設置 :內容左右放 */
+                display:block;
+                float:right;
+                /* 定位 */
+                margin-top: 185px;
+                margin-right: 10px;
+                /* 含背景的圓型透明按鈕 */
+                background: url(https://s3-alpha-sig.figma.com/img/2411/4817/bdfa2bd566c1379581f5b31c6a6a01bc?Expires=1621209600&Signature=ZgtteUxExUxBauf4Q1jbBwrhxtdcaydTL1BLO3wq3EykRCpQwZekp6Dw1bGc2LVmmGk0BxvqJc2~RF5gp~Q31UqGcJ4kdD5uusSMgJUqAhCdM4YuWFuDFPxnQKFunoMsV3s88IwbLxqj200wDY02ACTWwjdGEYo0Cu4UUqQOdYlQSl8a~yH2y4~7677Umz2qR1o10fdGV6Fy3dFb-wX-TrIco4Ap9UbGd9EM7oFI8XnopGxBH4SNNlKbRszdzhTQFPG2I2A5znN79bQWHSrbOL3QKZYBGNIhfKL~HwxDMLVK0rKcLzLevLWupHk7ncZneGoJfeDn~pSQfzmj1N5w3A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background-size: cover;
+                border-radius: 36px;
+                border-width:0px;
+                outline:none;  
+            }
+            .photo_name{
+                /* 基本設置 */
+                width: 600px;
+                height: 70px;
+                /* 特殊設置 :內容左右放置*/
+                display:block;
+                float:right;
+                /* 其他設置 :右距*/
+                margin-right: 15px;
+            }
+            .photo_name_text1{
+                /* 基本設置 */
+                height: 38px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 24px;
+                color: #666666;
+                /* 其他設置 */
+                margin-top: 10px;
+            }
+            .photo_name_text2{
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 13px;
+                color: #666666;
+            }
+            .choose{
+                /* 基本設置 */
+                width: 600px;
+                height: 302px;
+                background: #E8E8E8;
+                border-radius: 5px;
+                /* 特殊設置 :內容左右放置*/
+                display:block;
+                float:right;
+                /* 其他設置 :上距/右距*/
+                margin-top: 20px;
+                margin-right: 15px;
+            }
+            .choose_text1{
+                /* 基本設置 */
+                height: 37px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 37px;
+                color: #666666;
+                /* 其他設置 :上距左距*/
+                margin-top: 7.5px;
+                margin-left: 20px;
+            }
+            .choose_text2{
+                /* 基本設置 */
+                height: 39px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 39px;
+                color: #666666;
+                /* 其他設置 :左距*/
+                margin-left: 20px;
+            }
+            .date{
+                /* 基本設置 */
+                height: 41px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 41px;
+                color: #666666;
+                /* 特殊設置 :div不換行*/
+                display:inline;
+                /* 其他設置 :左距*/
+                margin-left: 20px;
+            }
+            .date_input{
+                /* 特殊設置 :div不換行*/
+                display:inline;
+            }
+            .time{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                color: #666666;
+                /* 特殊設置 :div不換行*/
+                display:inline;
+                /* 其他設置 :左距*/
+                margin-left: 20px;
+            }
+            .label_text{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                color: #666666;
+            }
+            .cost{
+                /* 基本設置 */
+                height: 52px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 52px;
+                color: #666666;
+                /* 特殊設置 :div不換行*/
+                display:inline;
+                /* 其他設置 :左距*/
+                margin-left: 20px;
+            }
+            .cost_text{
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                /* 特殊設置 :div不換行*/
+                display:inline;
+                color: #666666;
+            }
+            .choose_btn{
+                /* 基本設置 */
+                width: 154px;
+                height: 36px;
+                border-radius: 5px;
+                background: #448899;
+                /* 其他設置 :左距*/
+                margin-left: 20px;
+                /* 其他設置 :按鈕邊框 */
+                border-width:1.5px;
+                border-color: #6d91bb;
+                outline:none;
+            }
+            .choose_btn_text{
+                /* 基本設置 */
+                height: 36px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 19px;
+                line-height: 36px;
+                color: #FFFFFF;
+            }
+            .bar{
+                /* 基本設置 */
+                max-width: 1200px;
+                /* 其他設置 */
+                margin: auto; 
+            }
+            .synopsis{
+                /* 基本設置 */
+                max-width: 1200px;
+                /* 其他設置 :置中/上距/內距*/
+                margin: auto;
+                margin-top: 50px;
+                padding: 10px;
+            }
+            .synopsis_text{
+                /* 基本設置 */
+                width: 100%;
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 */
+                margin-bottom: 30px;
+            }
+            .synopsis_text1{
+                /* 基本設置 */
+                width: 100%;
+                font-family: Noto Sans TC;
+                font-weight: bold;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 */
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .synopsis_text2{
+                /* 基本設置 */
+                width: 100%;
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 */
+                margin-bottom: 20px;
+            }
+            /* 頁底 */
+            .footer{
+                /* 基本設置 */
+                max-width: 100%;
+                height: 104px;
+                background: #757575;
+                /* 其他設置 :上距/內容置中*/
+                margin-top: 40px;
+                text-align: center;
+            }
+            .footer_text{
+                /* 基本設置 */
+                height: 104px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height:104px;
+                color: #FFFFFF;      
+            }
+            /* 介面縮放 */
+            @media (max-width:1200px){
+                /* 照片 */
+                .booking{height: 880px;width: 600px;}
+                .photo_name{float:left;width: 560px;margin-left: 20px;margin-right: 10px;}
+                .choose{float:left;width: 570px;margin-left: 15px;margin-right: 15px;}
+                .photo{padding: 30px;margin: 0px;}
+                /* 照片按鈕 */
+                .photo_btn{width: 600px;margin-top: 30px;margin-left: 0px;}
+                /* 景點介紹文字 */
+                .synopsis{width: 600px;}
+            }
+            @media (max-width:650px){
+                /* 景點介紹文字 */
+                .synopsis{width: 90%;height: auto;}
+            }
+            @media (max-width:620px){
+                /* 照片 */
+                .booking{width: 100%;overflow: hidden;}
+                .photo{width: 100%;height: 68vw;margin-left: -5vw;}
+                .photo_name{width: 92vw;}
+                .choose{width: 92vw;}
+                /* 照片按鈕 */
+                .photo_btn{width: 95vw;margin-top: 3vw;}    
+            }
+            @media (max-width:600px){
+                /* 導覽區塊高度 */
+                .booking{height: 870px;}
+            }
+            @media (max-width:580px){
+                /* 導覽區塊高度 */
+                .booking{height: 860px;}
+            }
+            @media (max-width:560px){
+                /* 導覽區塊高度 */
+                .booking{height: 850px;}
+            }
+            @media (max-width:550px){
+                /* 調整照片左btn */
+                .photo_left{margin-left: 40px;}
+            }
+            @media (max-width:540px){
+                /* 導覽區塊高度 */
+                .booking{height: 840px;}
+            }
+            @media (max-width:520px){
+                /* 導覽區塊高度 */
+                .booking{height: 820px;}
+            }
+            @media (max-width:500px){
+                /* 照片 */
+                .photo{margin-left: -6vw;}
+                /* 照片按鈕 */
+                .photo_btn{width: 96vw;margin-top: -1vw;}
+                /* 調整照片左btn */
+                .photo_left{margin-left: 10px;}
+                /* 導覽區塊高度 */
+                .booking{height: 800px;}
+            }
+            @media (max-width:480px){
+                /* 導覽區塊高度 */
+                .booking{height: 790px;}
+            }
+            @media (max-width:460px){
+                /* 導覽區塊高度 */
+                .booking{height: 770px;}
+            }
+            @media (max-width:450px){
+                /* 導覽文字 */
+                .choose_text2{margin-bottom: 10px;width: 210px;line-height: 25px;}
+            }
+            @media (max-width:440px){
+                /* 導覽區塊高度 */
+                .booking{height: 755px;}
+            }
+            @media (max-width:420px){
+                /* 照片按鈕 */
+                .photo_btn{width: 100vw;margin-top: -4vw;}
+                /* 導覽區塊高度 */
+                .booking{height: 740px;}
+            }
+            @media (max-width:400px){
+                /* 照片 */
+                .photo{margin-left: -7vw;}
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -7vw;}
+                /* 導覽區塊高度 */
+                .booking{height: 730px;}
+            }
+            @media (max-width:380px){
+                /* 導覽區塊高度 */
+                .booking{height: 715px;}
+            }
+            @media (max-width:360px){
+                /* 導覽區塊高度 */
+                .booking{height: 705px;}
+            }
+            @media (max-width:350px){
+                /* 照片 */
+                .photo{margin-left: -8vw;}
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -12vw;}
+                /* LOGO縮小 */
+                .logo{width: 120px;font-size: 24px;}
+                .nav{width: 160px;}                    
+            }
+            @media (max-width:340px){
+                /* 導覽區塊高度 */
+                .booking{height: 695px;}
+            }
+            @media (max-width:320px){
+                /* 照片 */
+                .photo{margin-left: -9vw;}
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -20vw;}
+                /* 導覽區塊高度 */
+                .booking{height: 685px;}
+            }
+            @media (max-width:310px){
+                .photo_name{margin-left: 6px;}
+                .choose{width: 98vw;margin-left: 2px;}
+            }
+            @media (max-width:300px){
+                /* 照片 */
+                .photo{margin-left: -11vw;}
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -23vw;}
+                /* 導覽區塊高度 */
+                .booking{height: 675px;}
+                /* LOGO縮小 */
+                .nav{width: 125px;} 
+                .nav_1_word{font-size: 2px;}
+                .nav_2_word{font-size: 2px;}
+            }
+            @media (max-width:280px){
+                /* 導覽區塊高度 */
+                .booking{height: 665px;}
+            }
+            @media (max-width:260px){
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -30vw;}
+                /* 導覽區塊高度 */
+                .booking{height: 655px;}
+            }
+            @media (max-width:250px){
+                /* 照片 */
+                .photo{margin-left: -13vw;}
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -35vw;}
+            }
+            @media (max-width:240px){
+                /* 導覽區塊高度 */
+                .booking{height: 645px;}
+            }
+            @media (max-width:230px){
+                /* 照片 */
+                .photo{margin-left: -15vw;}
+                /* 照片按鈕 */
+                .photo_btn{margin-top: -40vw;}
+            }
+            @media (max-width:220px){
+                /* 導覽區塊高度 */
+                .booking{height: 635px;}
+            }
+            /* 美化單選圓紐 */
+            input:focus{outline:none}
+            .radio_type{
+                /* 基本設置 */
+                width: 22px;
+                height: 22px;
+                outline: none;
+                /* 覆蓋原本的圈圈 */
+                position: static;
+            }
+            .radio_type:before{                
+                /* 基本設置 */
+                width: 23px;
+                height: 23px;
+                border-radius: 23px;
+                background-color: #FFFFFF;
+                /* 調整位置 */
+                margin-top: -0.2px;
+                margin-left: -0.2px;
+                /* 覆蓋原本的圈圈 */
+                content: '';
+                display: inline-block;                
+            }
+            .radio_type:checked:before{
+                /* 基本設置 */
+                width: 18px;
+                height: 18px;
+                border-radius: 18px;
+                background: #448899;
+                /* 調整位置 */
+                margin-top: 1.9px;
+                margin-left: 2px;
+                /* 覆蓋原本的圈圈 */
+                content: '';
+                display: inline-block;
+                
+            }
+            .radio_type:checked:after{
+                /* 基本設置 */
+                width: 18px;
+                height: 18px;
+                border-radius: 18px;
+                border-style:solid;
+                border: 3px solid #FFFFFF;
+                /* 調整位置 */
+                margin-top: -24.5px;
+                margin-left: -1px;
+                /* 覆蓋原本的圈圈 */
+                content: '';
+                display: block;
+   
+            }
+            
+        </style>
+    </head>
+    <body onload="getApiData();">
+        <!-- 導覽列 -->
+        <header class="header_background">
+            <div class="header">
+                <div class="logo">
+                    <a>台北一日遊</a>
+                </div>
+                <nav class="nav">
+                    <button class="nav_1"><a class="nav_1_word">預定行程</a></button>
+                    <button class="nav_2"><a class="nav_2_word">登入/註冊</a></button>
+                </nav>
+            </div>     
+        </header>
+        <!-- 主要內容 -->
+        <main>
+            <section class="booking">
+                <div class="photo" id="photo_photo">
+                </div>
+                <div class="photo_btn">
+                    <input type="button" class="photo_left" name="photo_btn" value="less" onclick="btn_change(this)"/>
+                    <input type="button" class="photo_right" name="photo_btn" value="plus" onclick="btn_change(this)"/>
+                </div>
+                <div class="photo_name">
+                    <div class="photo_name_text1" id="name"></div>
+                    <div class="photo_name_text2" id="name_merge"></div>
+                </div>
+                <div class="choose">
+                    <div class="choose_text1">訂購導覽行程</div>
+                    <div class="choose_text2">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+                    <div >
+                        <div class="date">選擇日期：</div>
+                        <input class="date_input" type="date"/>
+                    </div>
+
+                    <div class="time">選擇時間：</div>
+                    <input class="radio_type" type="radio" name="time" value="up" id="up" checked onclick="change()"/>
+                    <label for="up"><a class="label_text">上半天</a></label>
+                    <input class="radio_type" type="radio" name="time" value="down" id="down" onclick="change()"/>
+                    <label for="down"><a class="label_text">下半天</a></label>
+                    
+                    <br>
+                    <div class="cost">導覽費用： </div>
+                    <div class="cost_text" id="cost">新台幣 2000 元</div>
+                    <br>
+                    <button class="choose_btn"><a class="choose_btn_text">開始預訂行程</a></button>
+                </div>
+            </section>
+            <hr class="bar" size="1px" color="#E8E8E8"> 
+            <section class="synopsis" >
+                <div class="synopsis_text" id="description"></div>
+                <div class="synopsis_text1">
+                    景點地址：
+                </div>
+                <div class="synopsis_text2" id="address"></div>
+                <div class="synopsis_text1">
+                    交通方式：
+                </div>
+                <div class="synopsis_text2" id="transport"></div>
+            </section>
+        </main>
+        <!-- 頁底 -->
+        <footer class="footer">
+            <a class="footer_text">COPYRIGHT © 2021台北一日遊</a>
+        </footer>
+        <script type="text/javascript">
+            let api_id = location.pathname.match(/[^\/]+$/)[0];
+            let btn_photo_len = 5;
+            let btn_photo ="";
+            function getApiData(){
+                let api_url = `http://18.182.175.66:3000/api/attraction/${api_id}`; 
+                fetch(api_url).then(function(response){
+				    return response.json();
+				}).then(function(result){
+                    let api_data= JSON.stringify(result);
+                    // 分割資料
+                    api_data = api_data.replace('[','');
+                    api_data = api_data.replace(']','');
+                    api_data = api_data.replace('}','');
+                    api_data = api_data.split(",{");
+                    api_data = api_data[0].replace('{','');
+                    api_data = api_data.split('","');
+                    let photo = api_data[3].split('":"[')[1];
+                    photo = photo.substr(1,photo.length - 2);
+                    let name1 = api_data[1].split('":"')[1];
+                    let name2 = api_data[6].split('":"')[1];
+                    // 總結要使用的變數
+                    photo = photo.split("', '");
+                    // alert(photo.length);
+                    btn_photo = photo;
+                    btn_photo_len = photo.length-1;
+                    let name = api_data[7].split('":"')[1];
+                    let name_merge = name1 + " at " + name2;
+                    let description = api_data[2].split('":"')[1];
+                    let address = api_data[0].split('":"')[1];
+                    let transport = api_data[8].split('":"')[1].replace('"',"");
+                    // 將文字代入div
+                    let name_div = document.getElementById("name");
+                    let name_merge_div = document.getElementById("name_merge");
+                    let description_div = document.getElementById("description");
+                    let address_div = document.getElementById("address");
+                    let transport_div = document.getElementById("transport");
+                    let tx1 = document.createTextNode(name);
+                    let tx2 = document.createTextNode(name_merge);
+                    let tx3 = document.createTextNode(description);
+                    let tx4 = document.createTextNode(address);
+                    let tx5 = document.createTextNode(transport);
+                    name_div.appendChild(tx1);
+                    name_merge_div.appendChild(tx2);
+                    description_div.appendChild(tx3);
+                    address_div.appendChild(tx4);
+                    transport_div.appendChild(tx5);
+                    let photo_div = document.getElementById("photo_photo");
+                    photo_div.setAttribute("style",`background: url(${photo[0]});background-size: cover;`);
+                });
+            }
+            function change(){
+                let radio_va = "";
+                let radio = document.getElementsByName("time");
+                for(let i=0; i<radio.length;i++){
+                    if(radio[i].checked){
+                        radio_va = radio[i].value;
+                    }
+                }
+                if(radio_va == "up"){
+                    document.getElementById("cost").innerHTML = "";
+                    let cost = document.getElementById("cost");
+                    let cost_text = document.createTextNode("新台幣 2000 元");
+                    cost.appendChild(cost_text);
+                }
+                if(radio_va == "down"){
+                    document.getElementById("cost").innerHTML = "";
+                    let cost = document.getElementById("cost");
+                    let cost_text = document.createTextNode("新台幣 2500 元");
+                    cost.appendChild(cost_text);
+                }
+            }
+            btn_nb=0
+            function btn_change(node){
+                var index = Array.prototype.indexOf.call(node.parentNode.children, node);
+                if(node.value == "plus"){
+                    btn_nb = btn_nb+1;
+                    let photo_div = document.getElementById("photo_photo");
+                    photo_div.removeAttribute("style");
+                    photo_div.setAttribute("style",`background: url(${btn_photo[btn_nb]});background-size: cover;`);
+                }
+                if(node.value == "plus" & btn_nb == btn_photo_len+1){
+                    btn_nb = 0;
+                    let photo_div = document.getElementById("photo_photo");
+                    photo_div.removeAttribute("style");
+                    photo_div.setAttribute("style",`background: url(${btn_photo[btn_nb]});background-size: cover;`);
+                }
+                if(node.value == "less"){
+                    btn_nb = btn_nb-1;
+                    let photo_div = document.getElementById("photo_photo");
+                    photo_div.removeAttribute("style");
+                    photo_div.setAttribute("style",`background: url(${btn_photo[btn_nb]});background-size: cover;`);
+                }
+                if(node.value == "less" & btn_nb == -1){
+                    btn_nb = btn_photo_len;
+                    let photo_div = document.getElementById("photo_photo");
+                    photo_div.removeAttribute("style");
+                    photo_div.setAttribute("style",`background: url(${btn_photo[btn_nb]});background-size: cover;`);
+                }
+            }
+        </script>
+    </body>
+</html>

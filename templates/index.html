@@ -697,6 +697,7 @@
                         let text = result["data"][i]["name"];
                         let text1 = result["data"][i]["mrt"];
                         let text2 = result["data"][i]["category"];
+                        let id = result["data"][i]["id"];
 
                         let attractions_group_div = document.getElementById("attractions_group_div");
                         let attraction_div = document.createElement("div");
@@ -725,6 +726,11 @@
                         attraction_attraction_div.appendChild(text_div);
                         attraction_attraction_div.appendChild(text1_div);
                         attraction_attraction_div.appendChild(text2_div);
+
+                        let aTag = document.createElement('a');
+                        aTag.setAttribute('style',"display:block;max-width:270px;height:242px;");
+                        aTag.setAttribute('href',`http://18.182.175.66:3000/attraction/${id}`);
+                        photo_div.appendChild(aTag);
 
                         attraction_attraction_div.className = "attraction_attraction"
                         attraction_div.appendChild(attraction_attraction_div);
@@ -757,6 +763,7 @@
                                     text = result["data"][i]["name"];
                                     text1 = result["data"][i]["mrt"];
                                     text2 = result["data"][i]["category"];
+                                    id = result["data"][i]["id"];
 
                                     attractions_group_div = document.getElementById("attractions_group_div");
                                     attraction_div = document.createElement("div");
@@ -785,6 +792,11 @@
                                     attraction_attraction_div.appendChild(text_div);
                                     attraction_attraction_div.appendChild(text1_div);
                                     attraction_attraction_div.appendChild(text2_div);
+
+                                    aTag = document.createElement('a');
+                                    aTag.setAttribute('style',"display:block;max-width:270px;height:242px;");
+                                    aTag.setAttribute('href',`http://18.182.175.66:3000/attraction/${id}`);
+                                    photo_div.appendChild(aTag);
 
                                     attraction_attraction_div.className = "attraction_attraction"
                                     attraction_div.appendChild(attraction_attraction_div);
@@ -832,6 +844,7 @@
                         let text = result["data"][i]["name"];
                         let text1 = result["data"][i]["mrt"];
                         let text2 = result["data"][i]["category"];
+                        let id = result["data"][i]["id"];
 
                         let attractions_group_div = document.getElementById("attractions_group_div");
                         let attraction_div = document.createElement("div");
@@ -860,6 +873,11 @@
                         attraction_attraction_div.appendChild(text_div);
                         attraction_attraction_div.appendChild(text1_div);
                         attraction_attraction_div.appendChild(text2_div);
+
+                        let aTag = document.createElement('a');
+                        aTag.setAttribute('style',"display:block;max-width:270px;height:242px;");
+                        aTag.setAttribute('href',`http://18.182.175.66:3000/attraction/${id}`);
+                        photo_div.appendChild(aTag);
 
                         attraction_attraction_div.className = "attraction_attraction"
                         attraction_div.appendChild(attraction_attraction_div);
@@ -892,6 +910,7 @@
                                     text = result["data"][i]["name"];
                                     text1 = result["data"][i]["mrt"];
                                     text2 = result["data"][i]["category"];
+                                    id = result["data"][i]["id"];
 
                                     attractions_group_div = document.getElementById("attractions_group_div");
                                     attraction_div = document.createElement("div");
@@ -921,10 +940,18 @@
                                     attraction_attraction_div.appendChild(text1_div);
                                     attraction_attraction_div.appendChild(text2_div);
 
+                                    aTag = document.createElement('a');
+                                    aTag.setAttribute('style',"display:block;max-width:270px;height:242px;");
+                                    aTag.setAttribute('href',`http://18.182.175.66:3000/attraction/${id}`);
+                                    photo_div.appendChild(aTag);
+
+                                    // 修改
+
                                     attraction_attraction_div.className = "attraction_attraction"
                                     attraction_div.appendChild(attraction_attraction_div);
                                     attraction_div.className = "attraction";
                                     attractions_group_div.appendChild(attraction_div);
+                                    
                                 }
                                 
                                 page_act_act = false;
