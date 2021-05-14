@@ -3,12 +3,13 @@ app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
-import mysql.connector
+# import mysql.connector
 import pymysql.cursors
 import pymysql
-from flask import jsonify
+# from flask import jsonify
 
-
+app = Flask(__name__,static_folder="static",static_url_path="/")
+app.config['SECRET_KEY'] = 'ricetia' 
 
 @app.route("/")
 def index():
@@ -215,5 +216,100 @@ def api_error():
 	error = {"error": "true" , "message":"查無項目"}
 	return jsonify(error)
 
-app.run(port=3000)
-# app.run(host="0.0.0.0",port=3000) 
+@app.route("/api/user",methods=['POST'])
+def api_user():
+	
+	if request.values["send"] == "login":
+		login_email = request.form["login_email"]
+		login_password = request.form["login_password"]
+		session["user"] = login_email + "," + login_password
+	if request.values["send"] == "register":
+		register_name = request.form["register_name"]
+		register_email = request.form["register_email"]
+		register_password = request.form["register_password"]
+		session["user"] = register_name + "," + register_email + "," + register_password
+	if request.values["send"] == "check":
+		session["user"] = "check"
+	if request.values["send"] == "logout":
+		session["user"] = "logout"
+	
+	return "success"
+#
+@app.route("/api/user")
+def api_api():
+	# return session["user"]
+	if session["user"] == "logout":
+		session["log_user"] = "null"
+		return "null"
+	if session["user"] == "check":
+		return session["log_user"]
+	
+	user = ""
+	user = session["user"]
+	user = user.split(",")
+	if len(user) == 2:
+		signup = pymysql.connect(
+			host='localhost',
+			user='root',
+			password='rice1026',
+			db='taipei',
+			)
+		with signup.cursor() as cursor:
+			mysqlact = "SELECT `id`,`email`,`password`,`name` FROM `user` WHERE `email`=%s"
+			cursor.execute(mysqlact,user[0])
+			email_check = cursor.fetchall()
+		signup.close()
+
+		if len(email_check) == 1:
+			if email_check[0][2] == user[1]:
+				log_user = {}
+				log_user["data"]={"id":email_check[0][0],"name":email_check[0][3],"email":email_check[0][1]}
+				session["log_user"] = log_user
+				log = {"ok":True}
+				return jsonify(log)
+			else:
+				log ={"error": True,"message": "輸入錯誤的密碼！"}
+				return jsonify(log)
+		if len(email_check) == 0 :
+			log = {"error":True,"message": "此信箱尚未註冊！"}
+			return jsonify(log)
+	if len(user) == 3:
+		register_name = user[0]
+		register_email = user[1]
+		register_password = user[2]
+		signup = pymysql.connect(
+			host='localhost',
+			user='root',
+			password='rice1026',
+			db='taipei',
+			)
+		with signup.cursor() as cursor:
+			mysqlact = "SELECT `id`,`email`,`password` FROM `user` WHERE `email`=%s"
+			cursor.execute(mysqlact,register_email)
+			email_check = cursor.fetchall()
+		signup.close()
+
+		if len(email_check) == 1 :
+			log ={"error": True,"message": "此信箱已經註冊！"}
+			return jsonify(log)
+		if len(email_check) == 0 :
+			signup = pymysql.connect(
+			host='localhost',
+			user='root',
+			password='rice1026',
+			db='taipei',
+			)
+			with signup.cursor() as cursor:
+					mysqlact = "INSERT INTO user (name,email,password) VALUES (%s,%s,%s)"
+					cursor.execute(mysqlact,(register_name,register_email,register_password))
+					signup.commit()
+			signup.close()
+			log = {"ok":True}
+			return jsonify(log)
+	else :
+		log ={"error": True,"message": "伺服器錯誤！"}
+		return jsonify(log)
+
+	
+# app.run(port=3000)
+app.run(host="0.0.0.0",port=3000) 

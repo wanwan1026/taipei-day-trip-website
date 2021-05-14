@@ -105,6 +105,15 @@
                 height: 34px;
                 line-height: 34px;
             }
+            .nav_2_word_logout{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-size: 14px;
+                color: #666666;
+                /* 其他設置 :垂直置中 */
+                height: 34px;
+                line-height: 34px;
+            }
             /* 主要內容 */
             .booking{
                 /* 基本設置 */
@@ -332,7 +341,7 @@
                 max-width: 1200px;
                 /* 其他設置 :置中/上距/內距*/
                 margin: auto;
-                margin-top: 50px;
+                margin-top: 30px;
                 padding: 10px;
             }
             .synopsis_text{
@@ -384,6 +393,117 @@
                 line-height:104px;
                 color: #FFFFFF;      
             }
+            /* 登入系統 */
+            .system{
+                position:fixed;
+                top:0px;
+                left:0px;
+                background-color:#002; 
+                width:100%; 
+                filter:alpha(opacity=30);
+                opacity:0.3;
+                display:none;
+                z-Index:2;
+            }
+            .login_box{
+                position:fixed;
+                border-bottom-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                box-shadow: 0px 4px 60px #AAAAAA;
+                width:340px;
+                top:80px;
+                left:41vw;
+                background:#FFFFFF;
+                display:none;
+                z-Index:3;
+                text-align: center;
+            }
+            .log_bar{
+                width: 340px;
+                height: 10px;
+                background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+                margin-top: -11px;
+                border-top-right-radius: 6px;
+                border-top-left-radius: 6px;
+                border: 0px;
+            }
+            .log_text{
+                width: 310px;
+                height: 27px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 44px;
+                color: #666666;
+            }
+            .log_close{
+                position: fixed;
+                width: 16px;
+                height: 16px;
+                display:block;
+                float:right;
+                margin-top: -33px;
+                margin-left: 310px;
+                background: url(https://s3-alpha-sig.figma.com/img/0a1f/425f/8de46cdc235bdc9b370c21e0028a68e6?Expires=1621814400&Signature=gPD4-vtDzLTi3M3J3SOL3TUPM6i-k68S2~Wa4DatJ2GFSmbBJ2pl856BbUgCuBMm7lONrry5x-aR-ifwXeKVD3AonhdHQsFye3bXZlPuH2JyRZxWye-Jvn6dOOjmypQVTtBS5~Sbcoqs4l1VSSo0zGmZMcHvXr9n8ucctc3WNLKK2IGkO6XghExHmlRKOYOjgW7aIWnSlbFGxJB4yqzFIgKqKtYLMLiPt710QfGDLaYp85NELJRqKurPxNXtFe1MnL34stI-bM5arrmuG~DHq2BMMQdDWU5eZ2VTh1HMwx7lV9lY7ZN-~aG1y8PHVVJtX2pYMUeBTle4R4i21LJdQw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background-size: contain;
+                border-width:0px;
+            }
+            .login_input{
+                width: 310px;
+                height: 47px;
+                background: #FFFFFF;
+                border: 1px solid #CCCCCC;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                margin-left: 15px;
+            }
+            .login_input_input{
+                width: 270px;
+                font-family: Noto Sans TC;
+                font-size: 15px;
+                line-height: 45px;
+                color: #666666;
+                border: 0px;
+                outline:none;
+            }
+            .login_btn{
+                width: 310px;
+                height: 47px;
+                border-radius: 5px;
+                background: #448899;
+                outline:none;
+                border-color: #448899;
+                margin-bottom: 10px;
+            }
+            .login_btn_text{
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #FFFFFF;
+            }
+            .logchange{
+                font-family: Noto Sans TC;
+                font-size: 13px;
+                color: #666666;
+                margin-bottom: 15px;
+                margin-left: -30px;
+                background: transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .register_box{
+                position:fixed;
+                border-bottom-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                box-shadow: 0px 4px 60px #AAAAAA;
+                width:340px;
+                top:80px;
+                left:41vw;
+                background:#FFFFFF;
+                display:none;
+                z-Index:3;
+                text-align: center;
+            }
             /* 介面縮放 */
             @media (max-width:1200px){
                 /* 照片 */
@@ -396,9 +516,18 @@
                 /* 景點介紹文字 */
                 .synopsis{width: 600px;}
             }
+            @media (max-width:1150px){.login_box{left:43vw;}}
+            @media (max-width:1100px){.login_box{left:45vw;}}
+            @media (max-width:1050px){.login_box{left:35vw;}}
+            @media (max-width:960px){.login_box{left:33vw;}}
+            @media (max-width:850px){.login_box{left:30vw;}}
+            @media (max-width:750px){.login_box{left:35vw;}}
+            @media (max-width:700px){.login_box{left:25vw;}}
             @media (max-width:650px){
                 /* 景點介紹文字 */
                 .synopsis{width: 90%;height: auto;}
+                /*  */
+                .login_box{left:15vw;}
             }
             @media (max-width:620px){
                 /* 照片 */
@@ -412,6 +541,8 @@
             @media (max-width:600px){
                 /* 導覽區塊高度 */
                 .booking{height: 870px;}
+                /*  */
+                .login_box{left:22vw;}
             }
             @media (max-width:580px){
                 /* 導覽區塊高度 */
@@ -424,6 +555,8 @@
             @media (max-width:550px){
                 /* 調整照片左btn */
                 .photo_left{margin-left: 40px;}
+                /*  */
+                .login_box{left:20vw;}
             }
             @media (max-width:540px){
                 /* 導覽區塊高度 */
@@ -442,6 +575,8 @@
                 .photo_left{margin-left: 10px;}
                 /* 導覽區塊高度 */
                 .booking{height: 800px;}
+                /*  */
+                .login_box{left:15vw;}
             }
             @media (max-width:480px){
                 /* 導覽區塊高度 */
@@ -450,6 +585,8 @@
             @media (max-width:460px){
                 /* 導覽區塊高度 */
                 .booking{height: 770px;}
+                /*  */
+                .login_box{left:10vw;}
             }
             @media (max-width:450px){
                 /* 導覽文字 */
@@ -472,6 +609,8 @@
                 .photo_btn{margin-top: -7vw;}
                 /* 導覽區塊高度 */
                 .booking{height: 730px;}
+                /*  */
+                .login_box{left:5vw;}
             }
             @media (max-width:380px){
                 /* 導覽區塊高度 */
@@ -480,6 +619,8 @@
             @media (max-width:360px){
                 /* 導覽區塊高度 */
                 .booking{height: 705px;}
+                /*  */
+                .login_box{left:3vw;}
             }
             @media (max-width:350px){
                 /* 照片 */
@@ -488,11 +629,30 @@
                 .photo_btn{margin-top: -12vw;}
                 /* LOGO縮小 */
                 .logo{width: 120px;font-size: 24px;}
-                .nav{width: 160px;}                    
+                .nav{width: 160px;}
+                /*  */
+                .login_box{left:1vw;}
             }
             @media (max-width:340px){
                 /* 導覽區塊高度 */
                 .booking{height: 695px;}
+            }
+            @media (max-width:330px){
+                .login_box{width: 300px;left:3vw;}
+                .bar{width: 300px;}
+                .log_close{margin-left: 270px;}
+                .login_input{width: 270px;}
+                .login_input_input{width: 230px;}
+                .login_btn{width: 270px;}
+
+                .frame{width: 128px}
+                .nav{width: 170px;height: 20px;}
+                .nav_1{width: 60px;}
+                .nav_2{width: 100px;}
+                .nav_1_word{font-size: 1px;}
+                .nav_2_word{font-size: 1px;}
+                .nav_2_word_logout{font-size: 1px;}
+                
             }
             @media (max-width:320px){
                 /* 照片 */
@@ -517,6 +677,24 @@
                 .nav{width: 125px;} 
                 .nav_1_word{font-size: 2px;}
                 .nav_2_word{font-size: 2px;}
+            }
+            @media (max-width:290px){
+                .login_box{width: 250px;left:6vw;}
+                .bar{width: 250px;}
+                .log_close{margin-left: 220px;}
+                .login_input{width: 220px;}
+                .login_input_input{width: 180px;}
+                .login_btn{width: 220px;}
+                
+                .frame{width: 128px}
+                .nav{width: 170px;height: 20px;}
+                .nav_1{width: 60px;}
+                .nav_2{width: 100px;}
+                .nav_1_word{font-size: 1px;}
+                .nav_2_word{font-size: 1px;}
+                .nav_2_word_logout{font-size: 1px;}
+                .header{width: 280px;}
+                .logo{font-size: 16px;width: 90px;}
             }
             @media (max-width:280px){
                 /* 導覽區塊高度 */
@@ -610,10 +788,13 @@
                 <div class="logo">
                     <a>台北一日遊</a>
                 </div>
-                <nav class="nav">
+                <form class="nav" action="/api/user" method="post" target="login_iframe">
                     <button class="nav_1"><a class="nav_1_word">預定行程</a></button>
-                    <button class="nav_2"><a class="nav_2_word">登入/註冊</a></button>
-                </nav>
+                    <button class="nav_2" onclick="system();" id="nav_2"><a class="nav_2_word" id="nav_2_word">登入/註冊</a></button>
+                </form>
+                <iframe id="id_iframe" name="login_iframe" style="display:none;"></iframe>
+                <button style="visibility: hidden;" id="f" onclick="logout();"></button>
+
             </div>     
         </header>
         <!-- 主要內容 -->
@@ -667,10 +848,70 @@
         <footer class="footer">
             <a class="footer_text">COPYRIGHT © 2021台北一日遊</a>
         </footer>
+        <!-- 登入系統  -->
+        <div class="system" id="system"></div>
+        <div class="login_box" id="login_box">
+            <hr class="log_bar">
+            <a class="log_text">登入會員帳號</a><br>
+            <button class="log_close" onclick="logclose();"></button>
+            
+            <form action="/api/user" method="post" target="login_iframe">
+                <div class="login_input">
+                    <input class="login_input_input" placeholder="輸入電子信箱" name="login_email" required/>
+                </div>
+                <div class="login_input">
+                    <input class="login_input_input" placeholder="輸入密碼" name="login_password" required/>
+                </div>
+                <button class="login_btn" type="submit" name="send" value="login" id="a">
+                    <a class="login_btn_text">登入帳戶</a>
+                </button><br>
+                <div style="text-align: center;" id="log_error" ></div>
+            </form>
+            <button style="visibility: hidden;" id="b" onclick="login();"></button> 
+            <iframe id="id_iframe" name="login_iframe" style="display:none;"></iframe>
+            
+            <button class="logchange" id="loginchange" onclick="loginchange();">
+                <a>還沒有帳戶 ? 點此註冊</a>
+            </button>
+        </div>
+        <div class="register_box" id="register_box">
+            <hr class="log_bar">
+            <a class="log_text">註冊會員帳號</a><br>
+            <button class="log_close" onclick="logclose();"></button>
+
+            <form  action="/api/user" method="post" target="register_iframe">
+                <div class="login_input">
+                    <input class="login_input_input" placeholder="輸入姓名" name="register_name" required/>
+                </div>
+                <div class="login_input">
+                    <input class="login_input_input" placeholder="輸入電子信箱" name="register_email" required/>
+                </div>
+                <div class="login_input">
+                    <input class="login_input_input" placeholder="輸入密碼" name="register_password" required/>
+                </div>
+                <button class="login_btn"  type="submit" name="send" value="register" id="c">
+                    <a class="login_btn_text">註冊新帳戶</a>
+                </button><br>
+                <div id="reg_error" ></div>
+            </form>
+            <button style="visibility: hidden;" id="d" onclick="reg();" ></button>
+            <iframe id="id_iframe" name="register_iframe" style="display:none;"></iframe>
+            
+            <button class="logchange" id="registerchange" onclick="registerchange();">
+                <a>已經有帳戶了 ? 點此登入</a>
+            </button>
+        </div>
+        <div class="login_box">
+            <form action="/api/user" method="post" target="login_iframe">
+                <button class="login_btn" type="submit" name="send" value="check" id="check_btn"></button>
+            </form>
+            <iframe id="id_iframe" name="login_iframe" style="display:none;"></iframe>
+        </div>
         <script type="text/javascript">
             let api_id = location.pathname.match(/[^\/]+$/)[0];
             let btn_photo_len = 5;
             let btn_photo ="";
+            let logout_data = "";
             function getApiData(){
                 let api_url = `http://18.182.175.66:3000/api/attraction/${api_id}`; 
                 fetch(api_url).then(function(response){
@@ -717,6 +958,52 @@
                     let photo_div = document.getElementById("photo_photo");
                     photo_div.setAttribute("style",`background: url(${photo[0]});background-size: cover;`);
                 });
+                document.getElementById('check_btn').click();
+                
+                //登出
+                setTimeout(function(){
+                    let logout_url = "http://18.182.175.66:3000/api/user";
+                    fetch(logout_url).then(function(response){
+                        return response.json();
+                    }).then(function(result){
+                        logout_data=JSON.stringify(result);
+                        // console.log(logout_data)
+                        if (logout_data != "null"){
+
+                            document.getElementById("nav_2").innerHTML = "";
+                            let new_nav02_text = document.createElement("a");
+                            let new_nav02_text_text = document.createTextNode("【登出系統】");
+                            new_nav02_text.className = "nav_2_word_logout";
+                            new_nav02_text.appendChild(new_nav02_text_text);
+
+                            let nav02 = document.getElementById("nav_2");
+                            let new_nav02 = document.createElement("BUTTON");
+                            new_nav02.className = "nav_2";
+                            new_nav02.innerHTML = nav02.innerHTML ;
+                            nav02.parentNode.replaceChild(new_nav02,nav02);
+                            new_nav02.appendChild(new_nav02_text);
+                            let nav_nav = document.getElementById("nav");
+                            new_nav02.type = "submit";
+                            new_nav02.name = "send";
+                            new_nav02.value = "logout";
+                            new_nav02.id = "logout_btn";
+
+
+                            let btn5 = document.getElementById("logout_btn");
+                            let btn6 = document.getElementById("f");
+                            btn5.addEventListener('click', () =>{
+                                btn6.onclick();
+
+                            });
+
+
+                        }
+                    })
+                }, 30);
+
+
+                
+            
             }
             function change(){
                 let radio_va = "";
@@ -767,6 +1054,135 @@
                     photo_div.setAttribute("style",`background: url(${btn_photo[btn_nb]});background-size: cover;`);
                 }
             }
+            // 登入系統
+            
+            function logout(){
+                setTimeout(function(){
+                
+                    let logout_url = "http://18.182.175.66:3000/api/user";
+                    fetch(logout_url).then(function(response){
+                        return response.json();
+                    }).then(function(result){
+                        logout_data=JSON.stringify(result);
+                        location.reload();
+                        // console.log(logout_data)
+                    })
+                
+                }, 30);
+            }
+
+            window.onload=getApiData;
+
+            function system(){
+                let system_background=document.getElementById("system");
+                system_background.style.display="block";
+                system_background.style.height=document.body.clientHeight+"px";
+                document.getElementById("login_box").style.display="block";
+            }
+            function loginchange(){
+                document.getElementById("login_box").style.display="none";
+                document.getElementById("register_box").style.display="block";
+            }
+            function registerchange(){
+                document.getElementById("register_box").style.display="none";
+                document.getElementById("login_box").style.display="block";
+            }
+            function logclose(){
+                document.getElementById("system").style.display="none";
+                document.getElementById("login_box").style.display="none";
+                document.getElementById("register_box").style.display="none";
+            }
+            
+   
+            
+            let btn1 = document.getElementById("a");
+            let btn2 = document.getElementById("b");
+            btn1.addEventListener('click', () =>{
+                btn2.onclick();
+            });
+            
+            let dai = true; 
+            function login(){
+                setTimeout(function(){
+                    if (dai = true){
+                        dai = false
+                        let login_data = "";
+                        let login_url = "http://18.182.175.66:3000/api/user"; 
+                        fetch(login_url).then(function(response){
+                            return response.json();
+                        }).then(function(result){
+                            let login_data=JSON.stringify(result);
+                            if (login_data == '{"error":true,"message":"輸入錯誤的密碼！"}'){
+                                login_data = "輸入錯誤的密碼！"
+                                // console.log(login_data);
+                                document.getElementById("log_error").innerHTML = "";
+                                let log_error = document.getElementById("log_error");
+                                let login_error_text = document.createTextNode(login_data);
+                                log_error.appendChild(login_error_text) 
+                            }
+                            if (login_data == '{"error":true,"message":"此信箱尚未註冊！"}'){
+                                login_data = "此信箱尚未註冊！"
+                                // console.log(login_data);
+                                document.getElementById("log_error").innerHTML = "";
+                                let log_error = document.getElementById("log_error");
+                                let login_error_text = document.createTextNode(login_data);
+                                log_error.appendChild(login_error_text) 
+                            }
+                            if (login_data == '{"ok":true}'){
+                                // console.log(login_data);
+                                location.reload();
+                            }
+                            
+                        });
+                        dai = true  
+                    }    
+                }, 30);
+            }
+
+            let btn3 = document.getElementById("c");
+            let btn4 = document.getElementById("d");
+            btn3.addEventListener('click', () =>{
+                btn4.onclick();
+            });
+            
+            let reg_dai = true; 
+            function reg(){
+                setTimeout(function(){
+                    if (reg_dai = true){
+                        reg_dai = false
+                        let reg_data = "";
+                        let reg_url = "http://18.182.175.66:3000/api/user"; 
+                        fetch(reg_url).then(function(response){
+                            return response.json();
+                        }).then(function(result){
+                            let reg_data=JSON.stringify(result);
+                            if (reg_data == '{"error":true,"message":"此信箱已經註冊！"}'){
+                                reg_data = "此信箱已經註冊！"
+                                // console.log(reg_data);
+                                document.getElementById("reg_error").innerHTML = "";
+                                let reg_error = document.getElementById("reg_error");
+                                let reg_error_text = document.createTextNode(reg_data);
+                                reg_error.appendChild(reg_error_text) 
+                            }
+                            if (reg_data == '{"ok":true}'){
+                                reg_data = "註冊成功！"
+                                // console.log(reg_data);
+                                document.getElementById("reg_error").innerHTML = "";
+                                let reg_error = document.getElementById("reg_error");
+                                let reg_error_text = document.createTextNode(reg_data);
+                                reg_error.appendChild(reg_error_text) 
+                            }    
+                        });
+                        reg_dai = true  
+                    }    
+                }, 30);
+            }
+
+
+            
+ 
+            
+            
         </script>
     </body>
 </html>
