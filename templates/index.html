@@ -530,29 +530,33 @@
                 z-Index:2;
             }
             .login_box{
-                position:fixed;
+                position:absolute;
                 border-bottom-right-radius: 6px;
                 border-bottom-left-radius: 6px;
                 box-shadow: 0px 4px 60px #AAAAAA;
-                width:340px;
+                width: 340px;
                 top:80px;
-                left:41vw;
+                left:50%;
                 background:#FFFFFF;
                 display:none;
                 z-Index:3;
                 text-align: center;
+                margin:0 -170px;
+                padding: 1px;
+
             }
             .bar{
-                width: 340px;
+                max-width: 340px;
                 height: 10px;
                 background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
                 margin-top: -11px;
                 border-top-right-radius: 6px;
                 border-top-left-radius: 6px;
                 border: 0px;
+                
             }
             .log_text{
-                width: 310px;
+                max-width: 310px;
                 height: 27px;
                 font-family: Noto Sans TC;
                 font-style: normal;
@@ -574,25 +578,27 @@
                 border-width:0px;
             }
             .login_input{
-                width: 310px;
+                max-width: 310px;
                 height: 47px;
                 background: #FFFFFF;
                 border: 1px solid #CCCCCC;
                 border-radius: 5px;
                 margin-bottom: 10px;
-                margin-left: 15px;
+                margin:10px auto;
+                
             }
             .login_input_input{
-                width: 270px;
+                max-width: 270px;
                 font-family: Noto Sans TC;
                 font-size: 15px;
                 line-height: 45px;
                 color: #666666;
                 border: 0px;
                 outline:none;
+                
             }
             .login_btn{
-                width: 310px;
+                max-width: 310px;
                 height: 47px;
                 border-radius: 5px;
                 background: #448899;
@@ -616,31 +622,26 @@
                 outline:none;
             }
             .register_box{
-                position:fixed;
+                position:absolute;
                 border-bottom-right-radius: 6px;
                 border-bottom-left-radius: 6px;
                 box-shadow: 0px 4px 60px #AAAAAA;
-                width:340px;
+                width: 340px;
                 top:80px;
-                left:41vw;
+                left:50%;
                 background:#FFFFFF;
                 display:none;
                 z-Index:3;
                 text-align: center;
+                margin:0 -170px;
+                padding: 1px;
+
             }
             /* 比例調整重製 */
             @media (max-width:1295px){
                 .background{min-width: 1200px;}
                 .footer{min-width: 1200px;}
             }
-            /* @media (max-width:1150px){.login_box{left:43vw;}} */
-            /* @media (max-width:1100px){.login_box{left:45vw;}} */
-            /* @media (max-width:1050px){.login_box{left:40vw;}} */
-            /* @media (max-width:960px){.login_box{left:36vw;}} */
-            @media (max-width:850px){.login_box{left:35vw;}}
-            @media (max-width:750px){.login_box{left:30vw;}}
-            @media (max-width:650px){.login_box{left:25vw;}}
-            @media (max-width:600px){.login_box{left:20vw;}}
             @media (max-width:550px){
                 html,body{overflow-x: hidden;margin: 0px;}
                 .background{min-width: 0px;}
@@ -668,23 +669,10 @@
                 .text{width: 280px; height: 60px;font-size:25px;top: 200px;line-height: 26px;}
                 .text1{width: 180px;height: 30px;font-size:25px;top: 270px;line-height: 26px;}
                 .text2{width: 100px;height: 30x;font-size:25px;top: 275px;left: 205px;line-height: 26px;}
-
-                .login_box{left:20vw;}
             }
-            @media (max-width:500px){.login_box{left:15vw;}}
-            @media (max-width:460px){.login_box{left:10vw;}}
-            @media (max-width:400px){.login_box{left:5vw;}}
-            @media (max-width:360px){.login_box{left:3vw;}}
-            @media (max-width:350px){.login_box{left:1vw;}}
             @media (max-width:330px){
-                .login_box{width: 300px;left:3vw;}
-                .bar{width: 300px;}
-                .log_close{margin-left: 270px;}
-                .login_input{width: 270px;}
-                .login_input_input{width: 230px;}
-                .login_btn{width: 270px;}
-
-
+                .login_box{width: 300px;margin:0 -150px;}
+                .register_box{width: 300px;margin:0 -150px;}
 
                 .frame{width: 128px}
                 .nav{width: 170px;height: 20px;}
@@ -717,12 +705,8 @@
                 .text2{width: 78px;height: 38x;font-size:18px;top: 202px;left: 140px;line-height: 20px;}
             }
             @media (max-width:290px){
-                .login_box{width: 250px;left:6vw;}
-                .bar{width: 250px;}
-                .log_close{margin-left: 220px;}
-                .login_input{width: 220px;}
-                .login_input_input{width: 180px;}
-                .login_btn{width: 220px;}
+                .login_box{width: 200px;margin:0 -100px;}
+                .register_box{width: 200px;margin:0 -100px;}
             }
         </style>
     </head>
@@ -1024,7 +1008,7 @@
 
                         }
                     })
-                }, 110);
+                }, 120);
 
             }
             // 查詢關鍵字
@@ -1189,7 +1173,7 @@
                         // console.log(logout_data)
                     })
                 
-                }, 110);
+                }, 120);
             }
 
             window.onload=getdata;
@@ -1254,7 +1238,7 @@
                         });
                         dai = true  
                     }    
-                }, 110);
+                }, 120);
             }
 
             let btn3 = document.getElementById("c");
@@ -1293,7 +1277,7 @@
                         });
                         reg_dai = true  
                     }    
-                }, 110);
+                }, 120);
             }
         </script>
     </body>
