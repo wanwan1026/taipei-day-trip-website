@@ -7,6 +7,8 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 import pymysql.cursors
 import pymysql
 # from flask import jsonify
+import json
+
 
 app = Flask(__name__,static_folder="static",static_url_path="/")
 app.config['SECRET_KEY'] = 'ricetia' 
@@ -33,7 +35,7 @@ def attractions():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='rice1026', #記得改
+		password='RICETIA', #記得改
 		db='taipei',
 		cursorclass=pymysql.cursors.DictCursor
 		)
@@ -68,7 +70,7 @@ def attractions():
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='rice1026', #記得改
+			password='RICETIA', #記得改
 			db='taipei',
 			cursorclass=pymysql.cursors.DictCursor
 			)
@@ -183,7 +185,7 @@ def api_attraction(attractionId):
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='rice1026', #記得改
+		password='RICETIA', #記得改
 		db='taipei',
 		cursorclass=pymysql.cursors.DictCursor
 		)
@@ -197,7 +199,7 @@ def api_attraction(attractionId):
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='rice1026', #記得改
+			password='RICETIA', #記得改
 			db='taipei',
 			cursorclass=pymysql.cursors.DictCursor
 			)
@@ -216,100 +218,165 @@ def api_error():
 	error = {"error": "true" , "message":"查無項目"}
 	return jsonify(error)
 
-@app.route("/api/user",methods=['POST'])
-def api_user():
-	
-	if request.values["send"] == "login":
-		login_email = request.form["login_email"]
-		login_password = request.form["login_password"]
-		session["user"] = login_email + "," + login_password
-	if request.values["send"] == "register":
-		register_name = request.form["register_name"]
-		register_email = request.form["register_email"]
-		register_password = request.form["register_password"]
-		session["user"] = register_name + "," + register_email + "," + register_password
-	if request.values["send"] == "check":
-		session["user"] = "check"
-	if request.values["send"] == "logout":
-		session["user"] = "logout"
-	
-	return "success"
-#
-@app.route("/api/user")
-def api_api():
-	# return session["user"]
-	if session["user"] == "logout":
-		session["log_user"] = "null"
-		return "null"
-	if session["user"] == "check":
-		return session["log_user"]
-	
-	user = ""
-	user = session["user"]
-	user = user.split(",")
-	if len(user) == 2:
-		signup = pymysql.connect(
-			host='localhost',
-			user='root',
-			password='rice1026',
-			db='taipei',
-			)
-		with signup.cursor() as cursor:
-			mysqlact = "SELECT `id`,`email`,`password`,`name` FROM `user` WHERE `email`=%s"
-			cursor.execute(mysqlact,user[0])
-			email_check = cursor.fetchall()
-		signup.close()
-
-		if len(email_check) == 1:
-			if email_check[0][2] == user[1]:
-				log_user = {}
-				log_user["data"]={"id":email_check[0][0],"name":email_check[0][3],"email":email_check[0][1]}
-				session["log_user"] = log_user
-				log = {"ok":True}
-				return jsonify(log)
-			else:
-				log ={"error": True,"message": "輸入錯誤的密碼！"}
-				return jsonify(log)
-		if len(email_check) == 0 :
-			log = {"error":True,"message": "此信箱尚未註冊！"}
-			return jsonify(log)
-	if len(user) == 3:
-		register_name = user[0]
-		register_email = user[1]
-		register_password = user[2]
-		signup = pymysql.connect(
-			host='localhost',
-			user='root',
-			password='rice1026',
-			db='taipei',
-			)
-		with signup.cursor() as cursor:
-			mysqlact = "SELECT `id`,`email`,`password` FROM `user` WHERE `email`=%s"
-			cursor.execute(mysqlact,register_email)
-			email_check = cursor.fetchall()
-		signup.close()
-
-		if len(email_check) == 1 :
-			log ={"error": True,"message": "此信箱已經註冊！"}
-			return jsonify(log)
-		if len(email_check) == 0 :
-			signup = pymysql.connect(
-			host='localhost',
-			user='root',
-			password='rice1026',
-			db='taipei',
-			)
-			with signup.cursor() as cursor:
-					mysqlact = "INSERT INTO user (name,email,password) VALUES (%s,%s,%s)"
-					cursor.execute(mysqlact,(register_name,register_email,register_password))
-					signup.commit()
-			signup.close()
-			log = {"ok":True}
-			return jsonify(log)
+@app.route("/api/user",methods=['GET'])
+def api_get():
+	if session["logout"] == False:
+		success = {"data":{"id":session["login_id"],"name":session["login_name"],"email":session["login_email"]}}
+		return success
 	else :
-		log ={"error": True,"message": "伺服器錯誤！"}
-		return jsonify(log)
-
+		error = {"error":True,"message": "　暫時沒有使用者登入資訊！"}
+		return error
+@app.route("/api/user",methods=['POST'])
+def api_post():
+	registerData = request.data.decode('utf-8')
+	registerData = json.loads(registerData)
+	register_name = registerData["name"]
+	register_email = registerData["email"]
+	register_password = registerData["password"]
+	registerTest1 = False # 檢查參數1
+	registerTest2 = False # 檢查參數2
+	if register_name != "" and register_email != "" and register_password != "" :
+		registerTest1 = True
+	else :
+		error = {"error":True,"message": "　請填寫所有項目！"}
+		return error
 	
+	signup = pymysql.connect(
+		host='localhost',
+		user='root',
+		password='RICETIA',
+		db='taipei',
+		)
+	with signup.cursor() as cursor:
+		mysqlact = "SELECT `id`,`email`,`password`,`name` FROM `user` WHERE `email`=%s"
+		cursor.execute(mysqlact,register_email)
+		email_check = cursor.fetchall()
+	signup.close()
+
+	if len(email_check) >= 1 :
+		error = {"error":True,"message": "　此信箱已經註冊！"}
+		return error
+	if len(email_check) == 0 :
+		registerTest2 = True
+	
+	if registerTest1 == True and registerTest2 == True :
+		signup = pymysql.connect(
+			host='localhost',
+			user='root',
+			password='RICETIA',
+			db='taipei',
+			)
+		with signup.cursor() as cursor:
+			mysqlact = "INSERT INTO user (name,email,password) VALUES (%s,%s,%s)"
+			cursor.execute(mysqlact,(register_name,register_email,register_password))
+			signup.commit()
+		signup.close()
+		success = {"ok":True}
+		registerTest1 = False
+		registerTest2 = False
+		return success
+
+	else :
+		error = {"error":True,"message": "　伺服器錯誤！"}
+		return error
+@app.route("/api/user",methods=['PATCH'])
+def api_patch():
+	loginData = request.data.decode('utf-8')
+	loginData = json.loads(loginData)
+	login_email = loginData["email"]
+	login_password = loginData["password"]
+	loginTest1 = False # 檢查參數1
+	loginTest2 = False # 檢查參數2
+	if login_email != "" and login_password != "" :
+		loginTest1 = True
+	else :
+		error = {"error":True,"message": "　有項目未填寫！"}
+		return error
+	
+	signup = pymysql.connect(
+		host='localhost',
+		user='root',
+		password='RICETIA',
+		db='taipei',
+		)
+	with signup.cursor() as cursor:
+		mysqlact = "SELECT `id`,`name`,`email`,`password` FROM `user` WHERE `email`=%s"
+		cursor.execute(mysqlact,login_email)
+		email_check = cursor.fetchall()
+	signup.close()
+
+	if len(email_check) >= 1 :
+		if email_check[0][3] == login_password :
+			loginTest2 = True
+		else :
+			error = {"error":True,"message": "　密碼輸入錯誤！"}
+			return error
+	if len(email_check) == 0 :
+		error = {"error":True,"message": "　此信箱還未註冊！"}
+		return error
+
+	if loginTest1 == True and loginTest2 == True :
+		session["login_id"] = email_check[0][0]
+		session["login_name"] = email_check[0][1]
+		session["login_email"] = login_email
+		success = {"ok":True}
+		loginTest1 = False
+		loginTest2 = False
+		session["logout"] = False
+		return success
+
+	else :
+		loginTest1 = False
+		loginTest2 = False
+		error = {"error":True,"message": "　伺服器錯誤！"}
+		return error
+@app.route("/api/user",methods=['DELETE'])
+def api_delete():
+	del session["login_id"]
+	del session["login_name"]
+	del session["login_email"]
+	session["logout"] = True
+	success = request.data.decode('utf-8')
+	success = json.loads(success)
+	return success
+
+@app.route("/api/booking",methods=["GET"])
+def booking_get():
+	if session["booking"] == True :
+		success = {"id":session["id"],"date":session["date"],"cost":session["cost"]}
+		return success
+	if session["booking"] == False :
+		error = {"error":True,"message": "　還未挑選任何行程！"}
+		return error
+	else :
+		error = {"error":True,"message": "　伺服器錯誤！"}
+		return error
+@app.route("/api/booking",methods=["POST"])
+def booking_post():
+	bookingData = request.data.decode('utf-8')
+	bookingData = json.loads(bookingData)
+	if bookingData["id"] != "" and bookingData["date"] != "" and bookingData["cost"] != "":
+		session["id"] = bookingData["id"]
+		session["date"] = bookingData["date"]
+		session["cost"] = bookingData["cost"]
+		session["booking"] = True
+		success = {"ok": True}
+		return success
+	if bookingData["id"] == "" or bookingData["date"] == "" or bookingData["cost"] == "":
+		error = {"error":True,"message": "　部分欄位未點選！"}
+		return error
+	else :
+		error = {"error":True,"message": "　伺服器錯誤！"}
+		return error
+@app.route("/api/booking",methods=["DELETE"])
+def booking_delete():
+	del session["id"]
+	del session["date"]
+	del session["cost"]
+	session["booking"] = False
+	success = request.data.decode('utf-8')
+	success = json.loads(success)
+	return success
+
 # app.run(port=3000)
-app.run(host="0.0.0.0",port=3000) 
+app.run(host="0.0.0.0",port=3000)

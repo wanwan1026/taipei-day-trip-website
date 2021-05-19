@@ -72,7 +72,7 @@
             }
             .nav{
                 /* 基本設置 */
-                width: 175px;
+                width: 185px;
                 height: 34px;
                 /* 特殊設置2 :內容左右放置*/
                 display:block;
@@ -113,15 +113,6 @@
                 /* 基本設置 */
                 font-family: Noto Sans TC;
                 font-size: 16px;
-                color: #666666;
-                /* 其他設置 :垂直置中 */
-                height: 34px;
-                line-height: 34px;
-            }
-            .nav_2_word_logout{
-                /* 基本設置 */
-                font-family: Noto Sans TC;
-                font-size: 14px;
                 color: #666666;
                 /* 其他設置 :垂直置中 */
                 height: 34px;
@@ -529,7 +520,7 @@
                 display:none;
                 z-Index:2;
             }
-            .login_box{
+            .member_box{
                 position:absolute;
                 border-bottom-right-radius: 6px;
                 border-bottom-left-radius: 6px;
@@ -543,7 +534,6 @@
                 text-align: center;
                 margin:0 -170px;
                 padding: 1px;
-
             }
             .bar{
                 max-width: 340px;
@@ -553,7 +543,6 @@
                 border-top-right-radius: 6px;
                 border-top-left-radius: 6px;
                 border: 0px;
-                
             }
             .log_text{
                 max-width: 310px;
@@ -565,7 +554,7 @@
                 line-height: 44px;
                 color: #666666;
             }
-            .log_close{
+            .close{
                 position: fixed;
                 width: 16px;
                 height: 16px;
@@ -577,7 +566,7 @@
                 background-size: contain;
                 border-width:0px;
             }
-            .login_input{
+            .input{
                 max-width: 310px;
                 height: 47px;
                 background: #FFFFFF;
@@ -587,7 +576,7 @@
                 margin:10px auto;
                 
             }
-            .login_input_input{
+            .input_input{
                 max-width: 270px;
                 font-family: Noto Sans TC;
                 font-size: 15px;
@@ -597,7 +586,7 @@
                 outline:none;
                 
             }
-            .login_btn{
+            .btn{
                 max-width: 310px;
                 height: 47px;
                 border-radius: 5px;
@@ -606,36 +595,27 @@
                 border-color: #448899;
                 margin-bottom: 10px;
             }
-            .login_btn_text{
+            .btn_text{
                 font-family: Noto Sans TC;
                 font-size: 16px;
                 color: #FFFFFF;
             }
-            .logchange{
+            .change{
                 font-family: Noto Sans TC;
                 font-size: 13px;
                 color: #666666;
+                margin-top: 5px;
                 margin-bottom: 15px;
-                margin-left: -30px;
+                /* margin-left: -30px; */
                 background: transparent;
                 border-width:0px;
                 outline:none;
             }
-            .register_box{
-                position:absolute;
-                border-bottom-right-radius: 6px;
-                border-bottom-left-radius: 6px;
-                box-shadow: 0px 4px 60px #AAAAAA;
-                width: 340px;
-                top:80px;
-                left:50%;
-                background:#FFFFFF;
-                display:none;
-                z-Index:3;
+            .error{
+                font-family: Noto Sans TC;
+                font-size: 15px;
+                font-weight: bold;
                 text-align: center;
-                margin:0 -170px;
-                padding: 1px;
-
             }
             /* 比例調整重製 */
             @media (max-width:1295px){
@@ -671,8 +651,7 @@
                 .text2{width: 100px;height: 30x;font-size:25px;top: 275px;left: 205px;line-height: 26px;}
             }
             @media (max-width:330px){
-                .login_box{width: 300px;margin:0 -150px;}
-                .register_box{width: 300px;margin:0 -150px;}
+                .member_box{width: 300px;margin:0 -150px;}
 
                 .frame{width: 128px}
                 .nav{width: 170px;height: 20px;}
@@ -705,8 +684,7 @@
                 .text2{width: 78px;height: 38x;font-size:18px;top: 202px;left: 140px;line-height: 20px;}
             }
             @media (max-width:290px){
-                .login_box{width: 200px;margin:0 -100px;}
-                .register_box{width: 200px;margin:0 -100px;}
+                .member_box{width: 200px;margin:0 -100px;}
             }
         </style>
     </head>
@@ -714,16 +692,15 @@
         <!-- 導覽列 -->
         <header class="header_background">
             <div class="header">
-                <div class="logo">
-                    <a>台北一日遊</a>
-                </div>
-                <form class="nav" action="/api/user" method="post" target="login_iframe">
-                    <button class="nav_1"><a class="nav_1_word">預定行程</a></button>
-                    <button class="nav_2" onclick="system();" id="nav_2"><a class="nav_2_word" id="nav_2_word">登入/註冊</a></button>
-                </form>
-                <iframe id="id_iframe" name="login_iframe" style="display:none;"></iframe>
-                <button style="visibility: hidden;" id="f" onclick="logout();"></button>
-
+                <div class="logo" onclick="location.href='http://18.182.175.66:3000'"><a>台北一日遊</a></div>
+                <nav class="nav">
+                    <button class="nav_1" onclick="location.href='http://18.182.175.66:3000/booking'">
+                        <a class="nav_1_word">預定行程</a>
+                    </button>
+                    <button class="nav_2" onclick="system();" id="nav_2">
+                        <a class="nav_2_word" id="nav_2_word">登入/註冊</a>
+                    </button> 
+                </nav>
             </div>     
         </header>
         <!-- 搜尋區 -->
@@ -770,62 +747,50 @@
         </footer>
         <!-- 登入系統 -->
         <div class="system" id="system"></div>
-        <div class="login_box" id="login_box">
+        <div class="member_box" id="login_box">
             <hr class="bar">
             <a class="log_text">登入會員帳號</a><br>
-            <button class="log_close" onclick="logclose();"></button>
-
-            <form action="/api/user" method="post" target="login_iframe">
-                <div class="login_input">
-                    <input class="login_input_input" placeholder="輸入電子信箱" name="login_email" required/>
+            <button class="close" onclick="logclose();"></button>           
+            <form target="login_iframe">
+                <div class="input">
+                    <input class="input_input" name="login_email" placeholder="輸入電子信箱" required autocomplete/>
                 </div>
-                <div class="login_input">
-                    <input class="login_input_input" type="password" placeholder="輸入密碼" name="login_password" required/>
+                <div class="input">
+                    <input class="input_input" name="login_password" placeholder="輸入密碼" type="password" required autocomplete/>
                 </div>
-                <button class="login_btn" type="submit" name="send" value="login" id="a">
-                    <a class="login_btn_text">登入帳戶</a>
+                <button class="btn" onclick="GetLoginData();">
+                    <a class="btn_text">登入帳戶</a>
                 </button><br>
-                <div style="text-align: center;" id="log_error" ></div>
+                <div class="error" id="log_error"></div>
             </form>
-            <button style="visibility: hidden;" id="b" onclick="login();"></button> 
-            <iframe id="id_iframe" name="login_iframe" style="display:none;"></iframe>
-
-            <button class="logchange" id="loginchange" onclick="loginchange();">
+            <iframe name="login_iframe" style="display:none;"></iframe>   
+            <button class="change" id="loginchange" onclick="loginchange();">
                 <a>還沒有帳戶 ? 點此註冊</a>
             </button>
         </div>
-        <div class="register_box" id="register_box">
+        <div class="member_box" id="register_box">
             <hr class="bar">
             <a class="log_text">註冊會員帳號</a><br>
-            <button class="log_close" onclick="logclose();"></button>
-
-            <form  action="/api/user" method="post" target="register_iframe">
-                <div class="login_input">
-                    <input class="login_input_input" placeholder="輸入姓名" name="register_name" required/>
+            <button class="close" onclick="logclose();"></button>
+            <form target="register_iframe">
+                <div class="input">
+                    <input class="input_input" placeholder="輸入姓名" name="register_name" required autocomplete/>
                 </div>
-                <div class="login_input">
-                    <input class="login_input_input" placeholder="輸入電子信箱" name="register_email" required/>
+                <div class="input">
+                    <input class="input_input" placeholder="輸入電子信箱" name="register_email" required autocomplete/>
                 </div>
-                <div class="login_input">
-                    <input class="login_input_input" type="password" placeholder="輸入密碼" name="register_password" required/>
+                <div class="input">
+                    <input class="input_input" type="password" placeholder="輸入密碼" name="register_password" required autocomplete/>
                 </div>
-                <button class="login_btn"  type="submit" name="send" value="register" id="c">
-                    <a class="login_btn_text">註冊新帳戶</a>
+                <button class="btn" onclick="GetRegisterData();">
+                    <a class="btn_text">註冊新帳戶</a>
                 </button><br>
-                <div id="reg_error" ></div>
+                <div class="error" id="reg_error"></div>
             </form>
-            <button style="visibility: hidden;" id="d" onclick="reg();" ></button>
-            <iframe id="id_iframe" name="register_iframe" style="display:none;"></iframe>
-            
-            <button class="logchange" id="registerchange" onclick="registerchange();">
+            <iframe name="register_iframe" style="display:none;"></iframe> 
+            <button class="change" id="registerchange" onclick="registerchange();">
                 <a>已經有帳戶了 ? 點此登入</a>
             </button>
-        </div>
-        <div class="login_box">
-            <form action="/api/user" method="post" target="login_iframe">
-                <button class="login_btn" type="submit" name="send" value="check" id="check_btn"></button>
-            </form>
-            <iframe id="id_iframe" name="login_iframe" style="display:none;"></iframe>
         </div>
         <!-- 動態設定 -->
         <script type="text/javascript">
@@ -968,48 +933,40 @@
                     }
                 }
                 window.addEventListener('scroll',ScrollEvent);  
-                document.getElementById('check_btn').click();
-
-                setTimeout(function(){
-                    let logout_url = "http://18.182.175.66:3000/api/user";
-                    fetch(logout_url).then(function(response){
-                        return response.json();
-                    }).then(function(result){
-                        logout_data=JSON.stringify(result);
-                        // console.log(logout_data)
-                        if (logout_data != "null"){
-
-                            document.getElementById("nav_2").innerHTML = "";
-                            let new_nav02_text = document.createElement("a");
-                            let new_nav02_text_text = document.createTextNode("【登出系統】");
-                            new_nav02_text.className = "nav_2_word_logout";
-                            new_nav02_text.appendChild(new_nav02_text_text);
-
-                            let nav02 = document.getElementById("nav_2");
-                            let new_nav02 = document.createElement("BUTTON");
-                            new_nav02.className = "nav_2";
-                            new_nav02.innerHTML = nav02.innerHTML ;
-                            nav02.parentNode.replaceChild(new_nav02,nav02);
-                            new_nav02.appendChild(new_nav02_text);
-                            let nav_nav = document.getElementById("nav");
-                            new_nav02.type = "submit";
-                            new_nav02.name = "send";
-                            new_nav02.value = "logout";
-                            new_nav02.id = "logout_btn";
-
-
-                            let btn5 = document.getElementById("logout_btn");
-                            let btn6 = document.getElementById("f");
-                            btn5.addEventListener('click', () =>{
-                                btn6.onclick();
-
+               
+                // 會員系統
+                let loadAPIurl = 'http://18.182.175.66:3000/api/user'
+                fetch(loadAPIurl)
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    if ("data" in res){
+                        console.log(res)
+                        document.getElementById("nav_2_word").innerHTML = "";
+                        let logout = document.getElementById("nav_2_word");
+                        let logout_text = document.createTextNode("【登出系統】");
+                        logout.appendChild(logout_text);
+                        let logout_btn = document.getElementById("nav_2");
+                        logout_btn.onclick = logout_logout
+                        function logout_logout(){
+                            deleteData = {"ok": true}
+                            let logoutAPIurl = 'http://18.182.175.66:3000/api/user'
+                            fetch(logoutAPIurl,{
+                                method:'DELETE',
+                                body:JSON.stringify(deleteData),
+                            })
+                            .then(function(data) {
+                                return data.json();
+                            }).then(function(res) {
+                                if ("ok" in res){
+                                    location.reload();
+                                }
                             });
-
-
                         }
-                    })
-                }, 120);
-
+                    }else{
+                        console.log(res)
+                    }
+                });
             }
             // 查詢關鍵字
             let startcalc;
@@ -1160,23 +1117,6 @@
                 window.addEventListener('scroll',ScrollEvent);
             }
             // 登入系統
-
-            function logout(){
-                setTimeout(function(){
-                
-                    let logout_url = "http://18.182.175.66:3000/api/user";
-                    fetch(logout_url).then(function(response){
-                        return response.json();
-                    }).then(function(result){
-                        logout_data=JSON.stringify(result);
-                        location.reload();
-                        // console.log(logout_data)
-                    })
-                
-                }, 120);
-            }
-
-            window.onload=getdata;
             function system(){
                 let system_background=document.getElementById("system");
                 system_background.style.display="block";
@@ -1196,88 +1136,64 @@
                 document.getElementById("login_box").style.display="none";
                 document.getElementById("register_box").style.display="none";
             }
-
-            let btn1 = document.getElementById("a");
-            let btn2 = document.getElementById("b");
-            btn1.addEventListener('click', () =>{
-                btn2.onclick();
-            });
-            
-            let dai = true; 
-            function login(){
-                setTimeout(function(){
-                    if (dai = true){
-                        dai = false
-                        let login_data = "";
-                        let login_url = "http://18.182.175.66:3000/api/user"; 
-                        fetch(login_url).then(function(response){
-                            return response.json();
-                        }).then(function(result){
-                            let login_data=JSON.stringify(result);
-                            if (login_data == '{"error":true,"message":"輸入錯誤的密碼！"}'){
-                                login_data = "輸入錯誤的密碼！"
-                                // console.log(login_data);
-                                document.getElementById("log_error").innerHTML = "";
-                                let log_error = document.getElementById("log_error");
-                                let login_error_text = document.createTextNode(login_data);
-                                log_error.appendChild(login_error_text) 
-                            }
-                            if (login_data == '{"error":true,"message":"此信箱尚未註冊！"}'){
-                                login_data = "此信箱尚未註冊！"
-                                // console.log(login_data);
-                                document.getElementById("log_error").innerHTML = "";
-                                let log_error = document.getElementById("log_error");
-                                let login_error_text = document.createTextNode(login_data);
-                                log_error.appendChild(login_error_text) 
-                            }
-                            if (login_data == '{"ok":true}'){
-                                // console.log(login_data);
-                                location.reload();
-                            }
-                            
-                        });
-                        dai = true  
-                    }    
-                }, 120);
+            // 表單資訊
+            function GetLoginData(){
+                let email = document.getElementsByName("login_email")[0].value;
+                let password = document.getElementsByName("login_password")[0].value;
+                memberData = {"email":email,"password":password}
+                let userAPIurl = "http://18.182.175.66:3000/api/user"
+                
+                fetch(userAPIurl,{
+                    method:'PATCH',
+                    body:JSON.stringify(memberData),
+                })
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    // console.log(res);
+                    if ("error" in res){
+                        document.getElementById("log_error").innerHTML = "";
+                        let error = document.getElementById("log_error");
+                        let error_text = document.createTextNode(res["message"]);
+                        error.appendChild(error_text);
+                        error.style = "color: red;";
+                    }
+                    if ("ok" in res){
+                        location.reload();
+                    }
+                }); 
             }
+            function GetRegisterData(){
+                let name = document.getElementsByName("register_name")[0].value;
+                let email = document.getElementsByName("register_email")[0].value;
+                let password = document.getElementsByName("register_password")[0].value;
+                // console.log(name + email + password);
+                memberData = {"name":name,"email":email,"password":password}
+                let userAPIurl = "http://18.182.175.66:3000/api/user"
 
-            let btn3 = document.getElementById("c");
-            let btn4 = document.getElementById("d");
-            btn3.addEventListener('click', () =>{
-                btn4.onclick();
-            });
-            
-            let reg_dai = true; 
-            function reg(){
-                setTimeout(function(){
-                    if (reg_dai = true){
-                        reg_dai = false
-                        let reg_data = "";
-                        let reg_url = "http://18.182.175.66:3000/api/user"; 
-                        fetch(reg_url).then(function(response){
-                            return response.json();
-                        }).then(function(result){
-                            let reg_data=JSON.stringify(result);
-                            if (reg_data == '{"error":true,"message":"此信箱已經註冊！"}'){
-                                reg_data = "此信箱已經註冊！"
-                                // console.log(reg_data);
-                                document.getElementById("reg_error").innerHTML = "";
-                                let reg_error = document.getElementById("reg_error");
-                                let reg_error_text = document.createTextNode(reg_data);
-                                reg_error.appendChild(reg_error_text) 
-                            }
-                            if (reg_data == '{"ok":true}'){
-                                reg_data = "註冊成功！"
-                                // console.log(reg_data);
-                                document.getElementById("reg_error").innerHTML = "";
-                                let reg_error = document.getElementById("reg_error");
-                                let reg_error_text = document.createTextNode(reg_data);
-                                reg_error.appendChild(reg_error_text) 
-                            }
-                        });
-                        reg_dai = true  
-                    }    
-                }, 120);
+                fetch(userAPIurl,{
+                    method:'POST',
+                    body:JSON.stringify(memberData),
+                })
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    // console.log(res["message"]);
+                    if ("error" in res){
+                        document.getElementById("reg_error").innerHTML = "";
+                        let error = document.getElementById("reg_error");
+                        let error_text = document.createTextNode(res["message"]);
+                        error.appendChild(error_text);
+                        error.style = "color: red;";
+                    }
+                    if ("ok" in res){
+                        document.getElementById("reg_error").innerHTML = "";
+                        let error = document.getElementById("reg_error");
+                        let error_text = document.createTextNode("　恭喜成功註冊會員！");
+                        error.appendChild(error_text);
+                        error.style = "color: #666666;";
+                    }
+                });
             }
         </script>
     </body>
