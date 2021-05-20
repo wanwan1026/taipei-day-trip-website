@@ -587,7 +587,7 @@
                 
             }
             .btn{
-                max-width: 310px;
+                width: 310px;
                 height: 47px;
                 border-radius: 5px;
                 background: #448899;
@@ -682,9 +682,11 @@
                 .text{width: 200px; height: 38px;font-size:18px;top: 160px;line-height: 20px;}
                 .text1{width: 122px;height: 38px;font-size:18px;top: 193px;line-height: 20px;}
                 .text2{width: 78px;height: 38x;font-size:18px;top: 202px;left: 140px;line-height: 20px;}
+                .btn{width: 300px;}
             }
             @media (max-width:290px){
                 .member_box{width: 200px;margin:0 -100px;}
+                .btn{width: 200px;}
             }
         </style>
     </head>
@@ -694,7 +696,7 @@
             <div class="header">
                 <div class="logo" onclick="location.href='http://18.182.175.66:3000'"><a>台北一日遊</a></div>
                 <nav class="nav">
-                    <button class="nav_1" onclick="location.href='http://18.182.175.66:3000/booking'">
+                    <button class="nav_1" onclick="choose();">
                         <a class="nav_1_word">預定行程</a>
                     </button>
                     <button class="nav_2" onclick="system();" id="nav_2">

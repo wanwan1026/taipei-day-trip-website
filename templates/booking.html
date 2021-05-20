@@ -400,7 +400,7 @@
                 
             }
             .btn{
-                max-width: 310px;
+                width: 310px;
                 height: 47px;
                 border-radius: 5px;
                 background: #448899;
@@ -476,11 +476,12 @@
 
                 .logo{font-size: 16px;width: 90px;}
                 .header{width: 300px;}
-                
+                .btn{width: 300px;}
             }
             @media (max-width:290px){
                 .main{text-align: center;}
                 .member_box{width: 200px;margin:0 -100px;}
+                .btn{width: 200px;}
             }
         </style>
     </head>
@@ -660,6 +661,7 @@
                     }
                 }else{
                     console.log(res)
+                    window.location.href='http://18.182.175.66:3000';
                 }
             });
             // 取得預定資訊
