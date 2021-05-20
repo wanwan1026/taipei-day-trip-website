@@ -696,7 +696,7 @@
             <div class="header">
                 <div class="logo" onclick="location.href='http://18.182.175.66:3000'"><a>台北一日遊</a></div>
                 <nav class="nav">
-                    <button class="nav_1" onclick="choose();">
+                    <button class="nav_1" onclick="choo();">
                         <a class="nav_1_word">預定行程</a>
                     </button>
                     <button class="nav_2" onclick="system();" id="nav_2">
@@ -802,6 +802,7 @@
             let search_text = false;
             //判斷滾動請求是否完成
             let page_act = false;
+            let loggin = false;
             function getdata(){   
                 // 載入初始資料
                 let req="http://18.182.175.66:3000/api/attractions?page=0";
@@ -943,6 +944,7 @@
                     return data.json();
                 }).then(function(res) {
                     if ("data" in res){
+                        loggin = true;
                         console.log(res)
                         document.getElementById("nav_2_word").innerHTML = "";
                         let logout = document.getElementById("nav_2_word");
@@ -1198,57 +1200,17 @@
                 });
             }
     
-            // 預定行程
-            function choose(){
-                // 判斷有沒有登入
-                let checklogAPIurl = 'http://18.182.175.66:3000/api/user'
-                fetch(checklogAPIurl)
-                .then(function(data) {
-                    return data.json();
-                }).then(function(res) {
-                    if ("data" in res){
-                        let booking_id = api_id;
-                        let booking_date = document.getElementById("date").value;
-                        let radio_va = "";
-                        let radio = document.getElementsByName("time");
-                        for(let i=0; i<radio.length;i++){
-                            if(radio[i].checked){
-                                radio_va = radio[i].value;
-                            }
-                        }
-                        let booking_cost = "";
-                        if(radio_va == "up"){
-                            booking_cost = "新台幣 2000 元"
-                        }
-                        if(radio_va == "down"){
-                            booking_cost = "新台幣 2500 元"
-                        }
-                        bookingData = {"id":booking_id,"date":booking_date,"cost":booking_cost}
-                        
-                        let bookingAPIurl = "http://18.182.175.66:3000/api/booking"
-                        fetch(bookingAPIurl,{
-                            method:'POST',
-                            body:JSON.stringify(bookingData),
-                        })
-                        .then(function(data) {
-                            return data.json();
-                        }).then(function(res) {
-                            if ("ok" in res){
-                                console.log(res)
-                                window.location.href='http://18.182.175.66:3000/booking';  
-                            }
-                            if ("error" in res){
-                                console.log(res)
-                            }
-                        })
-                    }else{
-                        let system_background=document.getElementById("system");
-                        system_background.style.display="block";
-                        system_background.style.height=document.body.clientHeight+"px";
-                        document.getElementById("login_box").style.display="block";
-                        document.getElementById("register_box").style.display="none";
-                    }
-                });
+            function choo(){
+                if (loggin == true){
+                    window.location.href='http://18.182.175.66:3000/booking'
+                }
+                if (loggin == false){
+                    let system_background=document.getElementById("system");
+                    system_background.style.display="block";
+                    system_background.style.height=document.body.clientHeight+"px";
+                    document.getElementById("login_box").style.display="block";
+                    document.getElementById("register_box").style.display="none";
+                }
             }
 
             
