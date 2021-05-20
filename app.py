@@ -35,7 +35,7 @@ def attractions():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICETIA', #記得改
+		password='RICE', #記得改
 		db='taipei',
 		cursorclass=pymysql.cursors.DictCursor
 		)
@@ -70,7 +70,7 @@ def attractions():
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='RICETIA', #記得改
+			password='RICE', #記得改
 			db='taipei',
 			cursorclass=pymysql.cursors.DictCursor
 			)
@@ -185,7 +185,7 @@ def api_attraction(attractionId):
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICETIA', #記得改
+		password='RICE', #記得改
 		db='taipei',
 		cursorclass=pymysql.cursors.DictCursor
 		)
@@ -199,7 +199,7 @@ def api_attraction(attractionId):
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='RICETIA', #記得改
+			password='RICE', #記得改
 			db='taipei',
 			cursorclass=pymysql.cursors.DictCursor
 			)
@@ -220,6 +220,9 @@ def api_error():
 
 @app.route("/api/user",methods=['GET'])
 def api_get():
+	if "logout" not in session:
+		error = {"error":True,"message": "　暫時沒有使用者登入資訊！"}
+		return error
 	if session["logout"] == False:
 		success = {"data":{"id":session["login_id"],"name":session["login_name"],"email":session["login_email"]}}
 		return success
@@ -244,7 +247,7 @@ def api_post():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICETIA',
+		password='RICE',
 		db='taipei',
 		)
 	with signup.cursor() as cursor:
@@ -263,7 +266,7 @@ def api_post():
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='RICETIA',
+			password='RICE',
 			db='taipei',
 			)
 		with signup.cursor() as cursor:
@@ -296,7 +299,7 @@ def api_patch():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICETIA',
+		password='RICE',
 		db='taipei',
 		)
 	with signup.cursor() as cursor:
