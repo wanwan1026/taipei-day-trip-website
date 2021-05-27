@@ -1,3 +1,4 @@
+from math import nan
 from flask import *
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
@@ -8,6 +9,12 @@ import pymysql.cursors
 import pymysql
 # from flask import jsonify
 import json
+# import urllib.request as request
+
+import datetime
+import random
+
+import requests
 
 
 app = Flask(__name__,static_folder="static",static_url_path="/")
@@ -35,7 +42,7 @@ def attractions():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICE', #記得改
+		password='RICETIA', #記得改
 		db='taipei',
 		cursorclass=pymysql.cursors.DictCursor
 		)
@@ -70,7 +77,7 @@ def attractions():
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='RICE', #記得改
+			password='RICETIA', #記得改
 			db='taipei',
 			cursorclass=pymysql.cursors.DictCursor
 			)
@@ -185,7 +192,7 @@ def api_attraction(attractionId):
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICE', #記得改
+		password='RICETIA', #記得改
 		db='taipei',
 		cursorclass=pymysql.cursors.DictCursor
 		)
@@ -199,7 +206,7 @@ def api_attraction(attractionId):
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='RICE', #記得改
+			password='RICETIA', #記得改
 			db='taipei',
 			cursorclass=pymysql.cursors.DictCursor
 			)
@@ -247,7 +254,7 @@ def api_post():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICE',
+		password='RICETIA',
 		db='taipei',
 		)
 	with signup.cursor() as cursor:
@@ -266,7 +273,7 @@ def api_post():
 		signup = pymysql.connect(
 			host='localhost',
 			user='root',
-			password='RICE',
+			password='RICETIA',
 			db='taipei',
 			)
 		with signup.cursor() as cursor:
@@ -299,7 +306,7 @@ def api_patch():
 	signup = pymysql.connect(
 		host='localhost',
 		user='root',
-		password='RICE',
+		password='RICETIA',
 		db='taipei',
 		)
 	with signup.cursor() as cursor:
@@ -345,8 +352,11 @@ def api_delete():
 
 @app.route("/api/booking",methods=["GET"])
 def booking_get():
+	if "booking" not in session:
+		error = {"error":True,"message": "　伺服器錯誤！"}
+		return error
 	if session["booking"] == True :
-		success = {"id":session["id"],"date":session["date"],"cost":session["cost"]}
+		success = {"attractionId":session["attractionId"],"date":session["date"],"price":session["price"],"time":session["time"]}
 		return success
 	if session["booking"] == False :
 		error = {"error":True,"message": "　還未挑選任何行程！"}
@@ -358,14 +368,15 @@ def booking_get():
 def booking_post():
 	bookingData = request.data.decode('utf-8')
 	bookingData = json.loads(bookingData)
-	if bookingData["id"] != "" and bookingData["date"] != "" and bookingData["cost"] != "":
-		session["id"] = bookingData["id"]
+	if bookingData["attractionId"] != "" and bookingData["date"] != "" and bookingData["price"] != "":
+		session["attractionId"] = bookingData["attractionId"]
 		session["date"] = bookingData["date"]
-		session["cost"] = bookingData["cost"]
+		session["price"] = bookingData["price"]
+		session["time"] = bookingData["time"]
 		session["booking"] = True
 		success = {"ok": True}
 		return success
-	if bookingData["id"] == "" or bookingData["date"] == "" or bookingData["cost"] == "":
+	if bookingData["attractionId"] == "" or bookingData["date"] == "" or bookingData["price"] == "":
 		error = {"error":True,"message": "　部分欄位未點選！"}
 		return error
 	else :
@@ -373,13 +384,145 @@ def booking_post():
 		return error
 @app.route("/api/booking",methods=["DELETE"])
 def booking_delete():
-	del session["id"]
+	del session["attractionId"]
 	del session["date"]
-	del session["cost"]
+	del session["price"]
+	del session["time"]
 	session["booking"] = False
 	success = request.data.decode('utf-8')
 	success = json.loads(success)
 	return success
+
+@app.route("/api/orders",methods=['GET'])
+def order_get():
+	order_email = session["login_email"]
+	signup = pymysql.connect(
+		host='localhost',
+		user='root',
+		password='RICETIA',
+		db='taipei',
+		)
+	with signup.cursor() as cursor:
+		mysqlact = "SELECT `data` FROM `orders` WHERE `name`=%s"
+		cursor.execute(mysqlact,order_email)
+		orders_email = cursor.fetchall()
+	signup.close()
+
+	if len(orders_email) > 0 :		  
+		return jsonify(orders_email)
+	else:
+		error = {"error":"暫無預定資料"}
+		return error
+
+@app.route("/api/orders",methods=['POST'])
+def order():
+	primeData = request.data.decode('utf-8')
+	primeData = json.loads(primeData)
+
+	uniqueNum= ""
+	for i in range (0,10):
+		nowTime=datetime.datetime.now().strftime("%Y%m%d%H%M%S") #生成当前时间
+		randomNum=random.randint(0,100) #生成的随机整数n，其中0<=n<=100
+		if randomNum <= 10:
+			randomNum=str(0)+str(randomNum)
+			uniqueNum=str(nowTime)+str(randomNum)
+
+	orders_data = {
+		"data":{
+			"number": uniqueNum,
+			"price":primeData["order"]["price"],
+			"trip":{
+				"attraction":{
+					"id":primeData["order"]["trip"]["attraction"]["id"],
+					"name":primeData["order"]["trip"]["attraction"]["name"],
+					"address":primeData["order"]["trip"]["attraction"]["address"],
+					"image":primeData["order"]["trip"]["attraction"]["image"]
+				},
+			"date":primeData["order"]["trip"]["date"],
+			"time":primeData["order"]["trip"]["time"]
+			},
+			"contact":{
+				"name": primeData["order"]["contact"]["name"],
+      			"email": primeData["order"]["contact"]["email"],
+      			"phone": primeData["order"]["contact"]["phone"]
+			},
+			"status":0
+		}
+	}
+	# orders_data["data"]["status"] = 1
+	post_data = {
+		"prime":primeData["prime"],
+		"partner_key": "partner_nhiSaJcc60VQoz0SDIq36kkBIZnugh40CEg0TfRbZKfNSGBEuei1qwWT",
+		"merchant_id": "rice1026_ESUN",
+		"details":"Tour fee",
+		"amount": primeData["order"]["price"],
+		"cardholder": {
+			"phone_number": primeData["order"]["contact"]["phone"],
+			"name": primeData["order"]["contact"]["name"],
+			"email": primeData["order"]["contact"]["email"]
+		},
+		"remember": True
+	}
+
+	primeURL = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
+	primeHeaders = {"Content-Type": "application/json","x-api-key":"partner_nhiSaJcc60VQoz0SDIq36kkBIZnugh40CEg0TfRbZKfNSGBEuei1qwWT"}
+	
+	primeResponse = requests.post(primeURL,json = post_data,headers = primeHeaders)
+	primeResponse = primeResponse.json()
+	primeStatus = primeResponse["status"]
+	
+	if primeStatus == 0 :
+		orders_data["data"]["status"] = 0
+		primenumber = orders_data["data"]["number"]
+		primenumber = str(primenumber)
+		orders_data = str(orders_data)
+		primename = session["login_email"]
+		
+		signup = pymysql.connect(
+			host='localhost',
+			user='root',
+			password='RICETIA',
+			db='taipei',
+			)
+		with signup.cursor() as cursor:
+			mysqlact = "INSERT INTO orders (number,data,name) VALUES (%s,%s,%s)"
+			cursor.execute(mysqlact,(primenumber,orders_data,primename))
+			signup.commit()
+		signup.close()
+		success = {
+			"data": {
+				"number": primenumber,
+				"payment": {
+					"status": 0,
+					"message": "付款成功"
+				}
+			}
+		}
+
+		return success
+	if primeStatus != 0 :
+		primenumber = orders_data["data"]["number"]
+		signup = pymysql.connect(
+		host='localhost',
+		user='root',
+		password='RICETIA',
+		db='taipei',
+		)
+		with signup.cursor() as cursor:
+			mysqlact = "INSERT INTO orders (number,data) VALUES (%s,%s)"
+			cursor.execute(mysqlact,(primenumber,orders_data))
+			signup.commit()
+		signup.close()
+		success = {
+			"data": {
+				"number": primenumber,
+				"payment": {
+					"status": 1,
+					"message": "尚未付款"
+				}
+			}
+		}		
+		return success
 
 # app.run(port=3000)
 app.run(host="0.0.0.0",port=3000)

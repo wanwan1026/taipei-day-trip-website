@@ -262,7 +262,6 @@
                 margin-left: 5px;
                 float:right;
             }
-
             /*  */
             .user_box{
                 max-width: 1200px;
@@ -324,17 +323,8 @@
                 color: #666666;
                 margin-top: 24px;
             }
-            .user2_box2{
-                font-family: Noto Sans TC;
-                font-size: 16px;
-                color: #666666;
-                margin-top: 15px;
-            }
-            .user2_box3{
-                font-family: Noto Sans TC;
-                font-size: 16px;
-                color: #666666;
-                margin-top: 15px;
+            .user2_box1_1{
+                display: inline-block;
             }
             /* 登入系統 */
             .system{
@@ -390,7 +380,7 @@
                 float:right;
                 margin-top: -33px;
                 margin-left: 310px;
-                background: url(https://s3-alpha-sig.figma.com/img/0a1f/425f/8de46cdc235bdc9b370c21e0028a68e6?Expires=1621814400&Signature=gPD4-vtDzLTi3M3J3SOL3TUPM6i-k68S2~Wa4DatJ2GFSmbBJ2pl856BbUgCuBMm7lONrry5x-aR-ifwXeKVD3AonhdHQsFye3bXZlPuH2JyRZxWye-Jvn6dOOjmypQVTtBS5~Sbcoqs4l1VSSo0zGmZMcHvXr9n8ucctc3WNLKK2IGkO6XghExHmlRKOYOjgW7aIWnSlbFGxJB4yqzFIgKqKtYLMLiPt710QfGDLaYp85NELJRqKurPxNXtFe1MnL34stI-bM5arrmuG~DHq2BMMQdDWU5eZ2VTh1HMwx7lV9lY7ZN-~aG1y8PHVVJtX2pYMUeBTle4R4i21LJdQw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background: url(https://s3-alpha-sig.figma.com/img/0a1f/425f/8de46cdc235bdc9b370c21e0028a68e6?Expires=1623024000&Signature=TFAW1pxtDT4mP4gSKOP8qrkIb3vfSfMLpmWyuSyiAl8p3TOC10nCURKl~IzU5MTDupAruvmDstPQRyiUyz9vPO3OFmA~kzBI7nzOtquFS9AiGpEuPxUrDLvlT7CQhM5R2tRMebeTt~EMIguv0CqLWxfqbOPyNjZsQ~yHejCPCzCbBWHOyn1cUATtp0UTiSjsG8x6EHD2gQ5riHJX89KvuVbpsBS3O14teRz-yNNjAaS39EernD01ZO10nguHCQBclWXjFcWRokIDeNqq5NSQl8pd0zkCRv~YPR92kINuKDwMqtA9DWeusnMKdR~Ieu3EPhScF-O5oggm89QYV620zw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
                 background-size: contain;
                 border-width:0px;
             }
@@ -474,6 +464,15 @@
                 margin-left: 5px;
                 margin-right: 5px;
             }
+            /* 付款 */
+            .tpfield {
+                height: 16px;
+                width: 150px;
+                border: 1px solid gray;
+                margin-left: 3PX;
+                padding: 2px;
+                float:right;
+            }
             /*  */
             @media (max-width:800px){
                 .main_text{margin-left: 2vw;margin-right: 2vw;}
@@ -518,6 +517,7 @@
                 .member_box{width: 200px;margin:0 -100px;}
                 .btn{width: 200px;}
             }
+            
         </style>
     </head>
     <body onload="reload();">
@@ -535,29 +535,29 @@
             </div>     
         </header>
         <main class="main" id="main">
-            <a class="main_text" id="main_text">您好,明子,待預定的行程如下</a><br>
+            <a class="main_text" id="main_text"></a><br>
             <div class="booking_box">
                 <div class="booking_box1">
                     <div class="booking">
                         <div class="bookimg_img" id="bookimg_img"></div>
                         <div class="bookimg_imf">
-                            <a class="bookimg_imf_text" id="bookimg_imf_text">台北一日遊:關渡金色水岸八里左岸自行車道</a>
+                            <a class="bookimg_imf_text" id="bookimg_imf_text"></a>
                             <br>
                             <div style="display: inline-block;margin-top: 20px;">
                                 <div class="bookimg_imf_text1">日期 : </div>
-                                <div class="bookimg_imf_text12" id="bookimg_imf_text12">2021-05-25</div>
+                                <div class="bookimg_imf_text12" id="bookimg_imf_text12"></div>
                             </div><br>
                             <div style="display: inline-block;margin-top: 10px;">
                                 <div class="bookimg_imf_text2">時間 : </div>
-                                <div class="bookimg_imf_text22" id="bookimg_imf_text22">下午4點到9點</div>
+                                <div class="bookimg_imf_text22" id="bookimg_imf_text22"></div>
                             </div><br>
                             <div style="display: inline-block;margin-top: 10px;">
                                 <div class="bookimg_imf_text3">費用 : </div>
-                                <div class="bookimg_imf_text32" id="bookimg_imf_text32">新台幣2500元</div>
+                                <div class="bookimg_imf_text32" id="bookimg_imf_text32"></div>
                             </div><br>
                             <div style="display: inline-block;margin-top: 10px;">
                                 <div class="bookimg_imf_text4">地點 : </div>
-                                <div class="bookimg_imf_text42" id="bookimg_imf_text42">台北市北投區關渡</div>
+                                <div class="bookimg_imf_text42" id="bookimg_imf_text42"></div>
                             </div>
                             
                         </div>
@@ -572,15 +572,15 @@
                 <div class="user_box_text1"><a>您的聯絡資訊</a></div>
                 <div class="user_box1">
                     <a>聯絡姓名 : </a>
-                    <input/>
+                    <input id="user_name"/>
                 </div>
                 <div class="user_box2">
                     <a>聯絡信箱 : </a>
-                    <input/>
+                    <input id="user_email"/>
                 </div>
                 <div class="user_box3">
                     <a>手機號碼 : </a>
-                    <input/>
+                    <input id="user_phone"/>
                 </div>
                 <div class="user_box4">
                     <a>請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</a>    
@@ -591,24 +591,33 @@
             <div class="user2_box">
                 <div class="user2_box_text1"><a>信用卡付款資訊</a></div>
                 <div class="user2_box1">
-                    <a>卡片號碼 : </a>
-                    <input/>
+                    <div class="user2_box1_1">
+                        <a>卡片號碼 : </a>
+                        <div class="tpfield" id="card-number"></div>
+                    </div>
                 </div>
                 <div class="user2_box1">
-                    <a>過期時間 : </a>
-                    <input/>
+                    <div class="user2_box1_1">
+                        <a>過期時間 : </a>
+                        <div class="tpfield" id="card-expiration-date"></div>
+                    </div>
+                    
                 </div>
                 <div class="user2_box1">
-                    <a>驗證密碼 : </a>
-                    <input/>
+                    <div class="user2_box1_1">
+                        <a>驗證密碼 : </a>
+                        <div class="tpfield" id="card-ccv"></div>
+                    </div>
+                    
                 </div>
             </div>
+
             <hr class="bar" size="1px" color="#E8E8E8">
             <div class="cost_all">
                 <div class="cost_all1"></div>
                 <div class="cost_all2">
                     <a class="cost_text">總價 : 新台幣2000元</a><br>
-                    <button class="cost_btn">確認預定並付款</button>   
+                    <button class="cost_btn" id="submit-button" onclick="onClick()">確認預定並付款</button>   
                 </div>
             </div>
             
@@ -664,236 +673,385 @@
                 <a>已經有帳戶了 ? 點此登入</a>
             </button>
         </div>
+        <script src="https://js.tappaysdk.com/tpdirect/v5.7.0"></script>
         <script type="text/javascript">
-        // 載入畫面
-        let user_name = "";
-        function reload(){
-            
-            // 取得登入資訊
-            let loadAPIurl = 'http://18.182.175.66:3000/api/user'
-            fetch(loadAPIurl)
-            .then(function(data) {
-                return data.json();
-            }).then(function(res) {
-                if ("data" in res){
-                    user_name = res["data"]["name"]
-                    document.getElementById("nav_2_word").innerHTML = "";
-                    let logout = document.getElementById("nav_2_word");
-                    let logout_text = document.createTextNode("【登出系統】");
-                    logout.appendChild(logout_text);
-                    let logout_btn = document.getElementById("nav_2");
-                    logout_btn.onclick = logout_logout
-                    function logout_logout(){
-                        deleteData = {"ok": true}
-                        let logoutAPIurl = 'http://18.182.175.66:3000/api/user'
-                        fetch(logoutAPIurl,{
-                            method:'DELETE',
-                            body:JSON.stringify(deleteData),
-                        })
+            // 付款
+            TPDirect.setupSDK(20426, 'app_MIDD7EcRRqUFaPq0hVdjB2RNn4StLGi7F6Gje0649jTTTNfFMgGdEmNzHLRX', 'sandbox')  
+            let fields = {
+                number: {
+                    // css selector
+                    element: '#card-number',
+                    placeholder: '**** **** **** ****'
+                },
+                expirationDate: {
+                    // DOM object
+                    element: document.getElementById('card-expiration-date'),
+                    placeholder: 'MM / YY'
+                },
+                ccv: {
+                    element: '#card-ccv',
+                    placeholder: 'ccv'
+                }
+            }
+            // 介面
+            TPDirect.card.setup({
+                fields: fields,
+                styles: {
+                    // Style all elements
+                    'input': {
+                        'color': 'gray'
+                    },
+                    // Styling ccv field
+                    'input.ccv': {
+                        // 'font-size': '16px'
+                    },
+                    // Styling expiration-date field
+                    'input.expiration-date': {
+                        // 'font-size': '16px'
+                    },
+                    // Styling card-number field
+                    'input.card-number': {
+                        // 'font-size': '16px'
+                    },
+                    // style focus state
+                    ':focus': {
+                        // 'color': 'black'
+                    },
+                    // style valid state
+                    '.valid': {
+                        'color': 'green'
+                    },
+                    // style invalid state
+                    '.invalid': {
+                        'color': 'red'
+                    },
+                    // Media queries
+                    // Note that these apply to the iframe, not the root window.
+                    '@media screen and (max-width: 400px)': {
+                        'input': {
+                            'color': 'orange'
+                        }
+                    }
+                }
+            })
+            // btn
+            let submitButton = document.querySelector('#submit-button')
+            // 取得getprime
+            function onClick() {
+                let prime = "";
+                if (login_ok == true){
+                    TPDirect.card.getPrime(function (result) {
+                        if (result.status !== 0) {
+                            console.log("訂單建立失敗，輸入不正確或其他原因")
+                            return
+                        }
+                        let contact = "";
+                        if (document.getElementById("user_name").value != "" && document.getElementById("user_email").value != "" && document.getElementById("user_phone").value != ""){
+                            contact = {"name":document.getElementById("user_name").value,"email":document.getElementById("user_email").value,"phone":document.getElementById("user_phone").value}
+                            prime = result.card.prime
+                            prime_data = {"prime":prime,"order":{"price":part_price,"trip":{"attraction":{"id":part_id,"name":part_name,"address":part_address,"image":part_image},"date":part_date,"time":part_time},"contact":contact}}
+                            // console.log(prime_data)
+                            let primeAPIurl = 'http://18.182.175.66:3000/api/orders';
+                            fetch(primeAPIurl,{
+                                method:'POST',
+                                body:JSON.stringify(prime_data),
+                            })
+                            .then(function(data) {
+                                return data.json();
+                            }).then(function(res) {
+                                console.log(res["data"]["payment"]["status"])
+                                let prime_number = res["data"]["number"]
+                                if (res["data"]["payment"]["status"] == 0){
+                                    window.location.href=`http://18.182.175.66:3000/thankyou?number=${prime_number}`
+                                }
+                                else{
+                                    window.location.href='http://18.182.175.66:3000/booking'
+                                }
+                            })              
+                        }
+                        else{
+                            console.log("訂單建立失敗，輸入不正確或其他原因")
+                        }
+                    })                    
+                }
+                if (login_ok != true){
+                    console.log("未登入系統，拒絕存取")
+                }
+
+
+            }
+
+            // 載入畫面
+            // 使用者資訊
+            let user_name = "";
+            let user_email = "";
+            // 景點資訊
+            let part_id = "";
+            let part_name = "";
+            let part_address = "";
+            let part_image = "";
+            let part_price = "";
+            let part_date = "";
+            let part_time = "";
+            // 
+            let login_ok = false;
+            function reload(){
+                // 取得登入資訊
+                let loadAPIurl = 'http://18.182.175.66:3000/api/user'
+                fetch(loadAPIurl)
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    if ("data" in res){
+                        user_email = res["data"]["email"];
+                        // console.log(res);
+                        login_ok = true;
+                        user_name = res["data"]["name"]
+                        document.getElementById("nav_2_word").innerHTML = "";
+                        let logout = document.getElementById("nav_2_word");
+                        let logout_text = document.createTextNode("【登出系統】");
+                        logout.appendChild(logout_text);
+                        let logout_btn = document.getElementById("nav_2");
+                        logout_btn.onclick = logout_logout
+                        function logout_logout(){
+                            deleteData = {"ok": true}
+                            let logoutAPIurl = 'http://18.182.175.66:3000/api/user'
+                            fetch(logoutAPIurl,{
+                                method:'DELETE',
+                                body:JSON.stringify(deleteData),
+                            })
+                            .then(function(data) {
+                                return data.json();
+                            }).then(function(res) {
+                                if ("ok" in res){
+                                    location.reload();
+                                }
+                            });
+                        }
+                        // 取得完成訂購資訊
+                        let orderAPIurl = 'http://18.182.175.66:3000/api/orders'
+                        fetch(orderAPIurl)
                         .then(function(data) {
                             return data.json();
                         }).then(function(res) {
-                            if ("ok" in res){
-                                location.reload();
+                            if ("error" in res ){
+                                console.log(res);
                             }
+                            else{
+                                res = res.toString();
+                                res = res.split("'number': '");
+                                res = res[1].split("', '");
+                                // alert(res[0]); 
+                                window.location.href=`http://18.182.175.66:3000/thankyou?number=${res[0]}`                    
+                            }
+                        })
+                    }
+                    else{
+                        console.log(res)
+                        window.location.href='http://18.182.175.66:3000';
+                    }
+                });
+                // 取得預定資訊
+                let bookAPIurl = 'http://18.182.175.66:3000/api/booking'
+                fetch(bookAPIurl)
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) { 
+                    // console.log(res)
+                    // 取得景點圖片
+                    if ("price" in res){
+                        let photo_url = `http://18.182.175.66:3000/api/attraction/${res["attractionId"]}`;
+                        part_id = res["attractionId"];
+                        let bookingDate = res["date"];
+                        part_date = res["date"];
+                        part_price = res["price"];
+                        part_time = res["time"];
+                        let booktime = "";
+                        let book_cost = "";
+                        if (res["price"] == "2000"){
+                            booktime = "早上 9 點到下午 4 點"
+                            book_cost = "新台幣 2000 元"
+                        }
+                        if (res["price"] == "2500"){
+                            booktime = "下午 2 點到晚上 9 點"
+                            book_cost = "新台幣 2500 元"
+                        }
+                    
+
+                        fetch(photo_url)
+                        .then(function(data) {
+                            return data.json();
+                        }).then(function(ress) {
+                            let booking_photo = ress[0]["images"].split("', '")
+                            booking_photo = booking_photo[0].replace("['","")
+                            part_image = booking_photo;
+                            // console.log(booking_photo)
+                            let booking_name = ress[0]["name"]
+                            part_name = ress[0]["name"]
+                            // console.log(booking_name)
+                            let booking_place = ress[0]["address"]
+                            part_address = ress[0]["address"];
+                            
+                            let main_text = document.getElementById("main_text");
+                            let main_text_tx = document.createTextNode(`您好,${user_name},待預定的行程如下:`);
+                            document.getElementById("main_text").innerHTML = "";
+                            main_text.appendChild(main_text_tx);
+
+                            let bookimg_imf_text = document.getElementById("bookimg_imf_text");
+                            let bookimg_imf_text_tx = document.createTextNode(`台北一日遊:${booking_name}`);
+                            document.getElementById("bookimg_imf_text").innerHTML = "";
+                            bookimg_imf_text.appendChild(bookimg_imf_text_tx);
+
+                            let bookimg_imf_text12 = document.getElementById("bookimg_imf_text12");
+                            let bookimg_imf_text12_tx = document.createTextNode(bookingDate);
+                            document.getElementById("bookimg_imf_text12").innerHTML = "";
+                            bookimg_imf_text12.appendChild(bookimg_imf_text12_tx);
+
+                            let bookimg_imf_text22 = document.getElementById("bookimg_imf_text22");
+                            let bookimg_imf_text22_tx = document.createTextNode(booktime);
+                            document.getElementById("bookimg_imf_text22").innerHTML = "";
+                            bookimg_imf_text22.appendChild(bookimg_imf_text22_tx);
+
+                            let bookimg_imf_text32 = document.getElementById("bookimg_imf_text32");
+                            let bookimg_imf_text32_tx = document.createTextNode(book_cost);
+                            document.getElementById("bookimg_imf_text32").innerHTML = "";
+                            bookimg_imf_text32.appendChild(bookimg_imf_text32_tx);
+
+                            let bookimg_imf_text42 = document.getElementById("bookimg_imf_text42");
+                            let bookimg_imf_text42_tx = document.createTextNode(booking_place);
+                            document.getElementById("bookimg_imf_text42").innerHTML = "";
+                            bookimg_imf_text42.appendChild(bookimg_imf_text42_tx);
+
+                            let bookimg_img = document.getElementById("bookimg_img");
+                            bookimg_img.setAttribute("style",`background: url(${booking_photo});background-size: cover;`);
                         });
                     }
-                }
-                else{
-                    console.log(res)
-                    window.location.href='http://18.182.175.66:3000';
-                }
-            });
-            // 取得預定資訊
-            let bookAPIurl = 'http://18.182.175.66:3000/api/booking'
-            fetch(bookAPIurl)
-            .then(function(data) {
-                return data.json();
-            }).then(function(res) {
-                console.log(res)
-                // 取得景點圖片
-                if ("cost" in res){
-                    let photo_url = `http://18.182.175.66:3000/api/attraction/${res["id"]}`;
-                    let bookingDate = res["date"]
-                    let booktime = "";
+                    if ("error" in res){
+                        document.getElementById("main").innerHTML = "";
+                        let zero = document.createElement("div");
+                        let zero_tx =  document.createTextNode(`您好,${user_name},待預定的行程如下:`);
+                        zero.appendChild(zero_tx);
+                        zero.className = "main_text";
+                        let zero2 = document.createElement("div");
+                        let zero_tx2 =  document.createTextNode("目前沒有任何待預訂的行程");
+                        zero2.style = "font-size: 16px;font-weight: normal;margin-top:35px"
+                        zero2.appendChild(zero_tx2)
+                        zero.appendChild(zero2)
+                        let main_zero = document.getElementById("main")
+                        main_zero.appendChild(zero)
+                        console.log(res["message"])
+                    }
                     
-                    if (res["cost"] == "新台幣 2000 元"){
-                        booktime = "早上 9 點到下午 4 點"
+                });    
+            }
+            // 刪除景點資料
+            function deleteimf(){
+                let deleteimfAPIurl = 'http://18.182.175.66:3000/api/booking'
+                deleteData = {"ok": true}
+                fetch(deleteimfAPIurl,{
+                    method:'DELETE',
+                    body:JSON.stringify(deleteData),
+                })
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    if ("ok" in res){ 
+                        document.getElementById("main").innerHTML = "";
+                        let zero = document.createElement("div");
+                        let zero_tx =  document.createTextNode(`您好,${user_name},待預定的行程如下:`);
+                        zero.appendChild(zero_tx);
+                        zero.className = "main_text";
+                        let zero2 = document.createElement("div");
+                        let zero_tx2 =  document.createTextNode("目前沒有任何待預訂的行程");
+                        zero2.style = "font-size: 16px;font-weight: normal;margin-top:35px"
+                        zero2.appendChild(zero_tx2)
+                        zero.appendChild(zero2)
+                        let main_zero = document.getElementById("main")
+                        main_zero.appendChild(zero)
                     }
-                    if (res["cost"] == "新台幣 2500 元"){
-                        booktime = "下午 4 點到晚上 9 點"
-                    }
-                    let book_cost = res["cost"]
-
-                    fetch(photo_url)
-                    .then(function(data) {
-                        return data.json();
-                    }).then(function(ress) {
-                        let booking_photo = ress[0]["images"].split("', '")
-                        booking_photo = booking_photo[0].replace("['","")
-                        // console.log(booking_photo)
-                        let booking_name = ress[0]["name"]
-                        // console.log(booking_name)
-                        let booking_place = ress[0]["address"]
-                        
-                        let main_text = document.getElementById("main_text");
-                        let main_text_tx = document.createTextNode(`您好,${user_name},待預定的行程如下:`);
-                        document.getElementById("main_text").innerHTML = "";
-                        main_text.appendChild(main_text_tx);
-
-                        let bookimg_imf_text = document.getElementById("bookimg_imf_text");
-                        let bookimg_imf_text_tx = document.createTextNode(`台北一日遊:${booking_name}`);
-                        document.getElementById("bookimg_imf_text").innerHTML = "";
-                        bookimg_imf_text.appendChild(bookimg_imf_text_tx);
-
-                        let bookimg_imf_text12 = document.getElementById("bookimg_imf_text12");
-                        let bookimg_imf_text12_tx = document.createTextNode(bookingDate);
-                        document.getElementById("bookimg_imf_text12").innerHTML = "";
-                        bookimg_imf_text12.appendChild(bookimg_imf_text12_tx);
-
-                        let bookimg_imf_text22 = document.getElementById("bookimg_imf_text22");
-                        let bookimg_imf_text22_tx = document.createTextNode(booktime);
-                        document.getElementById("bookimg_imf_text22").innerHTML = "";
-                        bookimg_imf_text22.appendChild(bookimg_imf_text22_tx);
-
-                        let bookimg_imf_text32 = document.getElementById("bookimg_imf_text32");
-                        let bookimg_imf_text32_tx = document.createTextNode(book_cost);
-                        document.getElementById("bookimg_imf_text32").innerHTML = "";
-                        bookimg_imf_text32.appendChild(bookimg_imf_text32_tx);
-
-                        let bookimg_imf_text42 = document.getElementById("bookimg_imf_text42");
-                        let bookimg_imf_text42_tx = document.createTextNode(booking_place);
-                        document.getElementById("bookimg_imf_text42").innerHTML = "";
-                        bookimg_imf_text42.appendChild(bookimg_imf_text42_tx);
-
-                        let bookimg_img = document.getElementById("bookimg_img");
-                        bookimg_img.setAttribute("style",`background: url(${booking_photo});background-size: cover;`);
-                    });
-                }
-                if ("error" in res){
-                    document.getElementById("main").innerHTML = "";
-                    let zero = document.createElement("div");
-                    let zero_tx =  document.createTextNode(`您好,${user_name},待預定的行程如下:`);
-                    zero.appendChild(zero_tx);
-                    zero.className = "main_text";
-                    let zero2 = document.createElement("div");
-                    let zero_tx2 =  document.createTextNode("目前沒有任何待預訂的行程");
-                    zero2.style = "font-size: 16px;font-weight: normal;margin-top:35px"
-                    zero2.appendChild(zero_tx2)
-                    zero.appendChild(zero2)
-                    let main_zero = document.getElementById("main")
-                    main_zero.appendChild(zero)
-                    console.log(res["message"])
-                }
+                });
+            }
+            // 登入系統
+            function system(){
+                let system_background=document.getElementById("system");
+                system_background.style.display="block";
+                system_background.style.height=document.body.clientHeight+"px";
+                document.getElementById("login_box").style.display="block";
+            }
+            function loginchange(){
+                document.getElementById("login_box").style.display="none";
+                document.getElementById("register_box").style.display="block";
+            }
+            function registerchange(){
+                document.getElementById("register_box").style.display="none";
+                document.getElementById("login_box").style.display="block";
+            }
+            function logclose(){
+                document.getElementById("system").style.display="none";
+                document.getElementById("login_box").style.display="none";
+                document.getElementById("register_box").style.display="none";
+            }
+            // 表單資訊
+            function GetLoginData(){
+                let email = document.getElementsByName("login_email")[0].value;
+                let password = document.getElementsByName("login_password")[0].value;
+                memberData = {"email":email,"password":password}
+                let userAPIurl = "http://18.182.175.66:3000/api/user"
                 
-            });    
-        }
-        // 刪除景點資料
-        function deleteimf(){
-            let deleteimfAPIurl = 'http://18.182.175.66:3000/api/booking'
-            deleteData = {"ok": true}
-            fetch(deleteimfAPIurl,{
-                method:'DELETE',
-                body:JSON.stringify(deleteData),
-            })
-            .then(function(data) {
-                return data.json();
-            }).then(function(res) {
-                if ("ok" in res){ 
-                    document.getElementById("main").innerHTML = "";
-                    let zero = document.createElement("div");
-                    let zero_tx =  document.createTextNode(`您好,${user_name},待預定的行程如下:`);
-                    zero.appendChild(zero_tx);
-                    zero.className = "main_text";
-                    let zero2 = document.createElement("div");
-                    let zero_tx2 =  document.createTextNode("目前沒有任何待預訂的行程");
-                    zero2.style = "font-size: 16px;font-weight: normal;margin-top:35px"
-                    zero2.appendChild(zero_tx2)
-                    zero.appendChild(zero2)
-                    let main_zero = document.getElementById("main")
-                    main_zero.appendChild(zero)
-                }
-            });
-        }
-        // 登入系統
-        function system(){
-            let system_background=document.getElementById("system");
-            system_background.style.display="block";
-            system_background.style.height=document.body.clientHeight+"px";
-            document.getElementById("login_box").style.display="block";
-        }
-        function loginchange(){
-            document.getElementById("login_box").style.display="none";
-            document.getElementById("register_box").style.display="block";
-        }
-        function registerchange(){
-            document.getElementById("register_box").style.display="none";
-            document.getElementById("login_box").style.display="block";
-        }
-        function logclose(){
-            document.getElementById("system").style.display="none";
-            document.getElementById("login_box").style.display="none";
-            document.getElementById("register_box").style.display="none";
-        }
-        // 表單資訊
-        function GetLoginData(){
-            let email = document.getElementsByName("login_email")[0].value;
-            let password = document.getElementsByName("login_password")[0].value;
-            memberData = {"email":email,"password":password}
-            let userAPIurl = "http://18.182.175.66:3000/api/user"
-            
-            fetch(userAPIurl,{
-                method:'PATCH',
-                body:JSON.stringify(memberData),
-            })
-            .then(function(data) {
-                return data.json();
-            }).then(function(res) {
-                // console.log(res);
-                if ("error" in res){
-                    document.getElementById("log_error").innerHTML = "";
-                    let error = document.getElementById("log_error");
-                    let error_text = document.createTextNode(res["message"]);
-                    error.appendChild(error_text);
-                    error.style = "color: red;";
-                }
-                if ("ok" in res){
-                    location.reload();
-                }
-            }); 
-        }
-        function GetRegisterData(){
-            let name = document.getElementsByName("register_name")[0].value;
-            let email = document.getElementsByName("register_email")[0].value;
-            let password = document.getElementsByName("register_password")[0].value;
-            // console.log(name + email + password);
-            memberData = {"name":name,"email":email,"password":password}
-            let userAPIurl = "http://18.182.175.66:3000/api/user"
+                fetch(userAPIurl,{
+                    method:'PATCH',
+                    body:JSON.stringify(memberData),
+                })
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    // console.log(res);
+                    if ("error" in res){
+                        document.getElementById("log_error").innerHTML = "";
+                        let error = document.getElementById("log_error");
+                        let error_text = document.createTextNode(res["message"]);
+                        error.appendChild(error_text);
+                        error.style = "color: red;";
+                    }
+                    if ("ok" in res){
+                        location.reload();
+                    }
+                }); 
+            }
+            function GetRegisterData(){
+                let name = document.getElementsByName("register_name")[0].value;
+                let email = document.getElementsByName("register_email")[0].value;
+                let password = document.getElementsByName("register_password")[0].value;
+                // console.log(name + email + password);
+                memberData = {"name":name,"email":email,"password":password}
+                let userAPIurl = "http://18.182.175.66:3000/api/user"
 
-            fetch(userAPIurl,{
-                method:'POST',
-                body:JSON.stringify(memberData),
-            })
-            .then(function(data) {
-                return data.json();
-            }).then(function(res) {
-                // console.log(res["message"]);
-                if ("error" in res){
-                    document.getElementById("reg_error").innerHTML = "";
-                    let error = document.getElementById("reg_error");
-                    let error_text = document.createTextNode(res["message"]);
-                    error.appendChild(error_text);
-                    error.style = "color: red;";
-                }
-                if ("ok" in res){
-                    document.getElementById("reg_error").innerHTML = "";
-                    let error = document.getElementById("reg_error");
-                    let error_text = document.createTextNode("　恭喜成功註冊會員！");
-                    error.appendChild(error_text);
-                    error.style = "color: #666666;";
-                }
-            });
-        }
+                fetch(userAPIurl,{
+                    method:'POST',
+                    body:JSON.stringify(memberData),
+                })
+                .then(function(data) {
+                    return data.json();
+                }).then(function(res) {
+                    // console.log(res["message"]);
+                    if ("error" in res){
+                        document.getElementById("reg_error").innerHTML = "";
+                        let error = document.getElementById("reg_error");
+                        let error_text = document.createTextNode(res["message"]);
+                        error.appendChild(error_text);
+                        error.style = "color: red;";
+                    }
+                    if ("ok" in res){
+                        document.getElementById("reg_error").innerHTML = "";
+                        let error = document.getElementById("reg_error");
+                        let error_text = document.createTextNode("　恭喜成功註冊會員！");
+                        error.appendChild(error_text);
+                        error.style = "color: #666666;";
+                    }
+                });
+            }
+            
+            
         </script>  
     </body>
 </html>
