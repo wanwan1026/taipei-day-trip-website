@@ -762,6 +762,7 @@
                                 console.log(res["data"]["payment"]["status"])
                                 let prime_number = res["data"]["number"]
                                 if (res["data"]["payment"]["status"] == 0){
+                                    
                                     window.location.href=`http://18.182.175.66:3000/thankyou?number=${prime_number}`
                                 }
                                 else{
@@ -838,11 +839,14 @@
                                 console.log(res);
                             }
                             else{
+
                                 res = res.toString();
                                 res = res.split("'number': '");
                                 res = res[1].split("', '");
-                                // alert(res[0]); 
-                                window.location.href=`http://18.182.175.66:3000/thankyou?number=${res[0]}`                    
+                                setTimeout(
+                                    location.href=`http://18.182.175.66:3000/thankyou?number=${res[0]}`
+                                ,3000)
+                                                    
                             }
                         })
                     }
