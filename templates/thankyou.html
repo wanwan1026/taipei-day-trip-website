@@ -357,6 +357,7 @@
     <script type="text/javascript">
         function reload(){
             // 取得登入資訊
+
             let loadAPIurl = 'http://18.182.175.66:3000/api/user'
             fetch(loadAPIurl)
             .then(function(data) {
@@ -396,9 +397,13 @@
             });
             // 取得訂單資訊
             
+
             let getUrlString = location.href;
             let url = new URL(getUrlString);
             url_number = url.searchParams.get('number')
+            if(url_number == null){
+                window.location.href='http://18.182.175.66:3000/booking';
+            }
             // console.log(a)
             document.getElementById("number").innerHTML = "";
             let number = document.getElementById("number");
