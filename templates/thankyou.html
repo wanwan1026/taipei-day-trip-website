@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            html{
+                /* 特殊設置 :footer置底 */
+                position: relative;
+                min-height: 100%;
+                overflow-x: hidden;
+            }
+            body{
+                /* 基本設置 */
+                max-width: 1920px;
+                background: #FFFFFF;
+                /* 特殊設置 :footer置底 */
+                margin-bottom: 104px;
+                /* 其他設置 */
+                margin: 0px;
+                /* 隱藏橫向卷軸 */
+                overflow-x: hidden;
+                
+            }
+            /* 導覽列 (外層)*/
+            .header_background{
+                /* 基本設置 */
+                width: 100%;
+                height: 54px;
+                background: #FFFFFF;
+                /* 其他設置:凍結窗格 */
+                position:fixed;
+                z-index:1;
+                top: 0px;
+                left: 0px;
+            }
+            /* 導覽列 (內層)*/
+            .header{
+                /* 基本設置 */
+                max-width: 1200px;
+                height: 34px;
+                /* 特殊設置2 :內容左右放置*/
+                margin: 10px auto;
+            }
+            /* 導覽列 (內容)*/
+            .logo{
+                /* 基本設置 */
+                width: 150px;
+                height: 34px;
+                line-height: 34px;
+                font-size: 30px;
+                font-weight: bold;
+                font-style: normal; 
+                font-family: Noto Sans;
+                color: #448899;    
+                /* 特殊設置2 :內容左右放置*/
+                display:block;
+                float:left;
+                /* 其他設置 :左外距*/
+                margin-left: 10px;      
+            }
+            .nav{
+                /* 基本設置 */
+                width: 185px;
+                height: 34px;
+                /* 特殊設置2 :內容左右放置*/
+                display:block;
+                float:right;
+                /* 特殊設置3 :內容左右放置*/
+                margin: 0px auto;
+                /* 其他設置 :右外距*/
+                margin-right: 10px;
+            }
+            .nav_1{
+                /* 特殊設置3 :內容左右放置*/
+                display:block;
+                float:left;
+                /* 其他設置 :透明按鈕 */
+                background: transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .nav_1_word{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 :垂直置中 */
+                height: 34px;
+                line-height: 34px;
+            }
+            .nav_2{
+                /* 特殊設置3 :內容左右放置*/
+                display:block;
+                float:right;
+                /* 其他設置 :透明按鈕 */
+                background: transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .nav_2_word{
+                /* 基本設置 */
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #666666;
+                /* 其他設置 :垂直置中 */
+                height: 34px;
+                line-height: 34px;
+            }
+            /* 頁底 */
+            .footer{
+                /* 基本設置 */
+                max-width: 100%;
+                height: 104px;
+                background: #757575;
+                /* 其他設置 :上距/內容置中*/
+                margin-top: 40px;
+                text-align: center;
+            }
+            .footer_text{
+                /* 基本設置 */
+                height: 104px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 16px;
+                line-height:104px;
+                color: #FFFFFF;      
+            }
+            /* 登入系統 */
+            .system{
+                position:fixed;
+                top:0px;
+                left:0px;
+                background-color:#002; 
+                width:100%; 
+                filter:alpha(opacity=30);
+                opacity:0.3;
+                display:none;
+                z-Index:2;
+            }
+            .member_box{
+                position:absolute;
+                border-bottom-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                box-shadow: 0px 4px 60px #AAAAAA;
+                width: 340px;
+                top:80px;
+                left:50%;
+                background:#FFFFFF;
+                display:none;
+                z-Index:3;
+                text-align: center;
+                margin:0 -170px;
+                padding: 1px;
+            }
+            .log_bar{
+                max-width: 340px;
+                height: 10px;
+                background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+                margin-top: -11px;
+                border-top-right-radius: 6px;
+                border-top-left-radius: 6px;
+                border: 0px;
+            }
+            .text{
+                max-width: 310px;
+                height: 27px;
+                font-family: Noto Sans TC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 44px;
+                color: #666666;
+            }
+            .close{
+                position: fixed;
+                width: 16px;
+                height: 16px;
+                display:block;
+                float:right;
+                margin-top: -33px;
+                margin-left: 310px;
+                background: url(https://s3-alpha-sig.figma.com/img/0a1f/425f/8de46cdc235bdc9b370c21e0028a68e6?Expires=1623024000&Signature=TFAW1pxtDT4mP4gSKOP8qrkIb3vfSfMLpmWyuSyiAl8p3TOC10nCURKl~IzU5MTDupAruvmDstPQRyiUyz9vPO3OFmA~kzBI7nzOtquFS9AiGpEuPxUrDLvlT7CQhM5R2tRMebeTt~EMIguv0CqLWxfqbOPyNjZsQ~yHejCPCzCbBWHOyn1cUATtp0UTiSjsG8x6EHD2gQ5riHJX89KvuVbpsBS3O14teRz-yNNjAaS39EernD01ZO10nguHCQBclWXjFcWRokIDeNqq5NSQl8pd0zkCRv~YPR92kINuKDwMqtA9DWeusnMKdR~Ieu3EPhScF-O5oggm89QYV620zw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA);
+                background-size: contain;
+                border-width:0px;
+            }
+            .input{
+                max-width: 310px;
+                height: 47px;
+                background: #FFFFFF;
+                border: 1px solid #CCCCCC;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                margin:10px auto;
+                
+            }
+            .input_input{
+                max-width: 270px;
+                font-family: Noto Sans TC;
+                font-size: 15px;
+                line-height: 45px;
+                color: #666666;
+                border: 0px;
+                outline:none;
+                
+            }
+            .btn{
+                width: 310px;
+                height: 47px;
+                border-radius: 5px;
+                background: #448899;
+                outline:none;
+                border-color: #448899;
+                margin-bottom: 10px;
+            }
+            .btn_text{
+                font-family: Noto Sans TC;
+                font-size: 16px;
+                color: #FFFFFF;
+            }
+            .change{
+                font-family: Noto Sans TC;
+                font-size: 13px;
+                color: #666666;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                /* margin-left: -30px; */
+                background: transparent;
+                border-width:0px;
+                outline:none;
+            }
+            .error{
+                font-family: Noto Sans TC;
+                font-size: 15px;
+                font-weight: bold;
+                text-align: center;
+            }
+            /* 內容 */
+            .main{
+                max-width: 1200px;
+                margin: auto;
+                margin-top: 120px;
+            }
+            .thanks{
+                height: 250px;
+                font-family: Noto Sans TC;
+                font-weight: bold;
+                font-size: 19px;
+                color: #666666;
+                margin-left: 100px;
+                margin-bottom: 35px;
+            }
+            .thanks1{
+                height: 35px;
+                font-family: Noto Sans TC;
+                font-weight: bold;
+                font-size: 28px;
+                color: #666666;
+                margin-left: 100px;
+                margin-bottom: 30px;
+                line-height: 35px;
+            }
+            .thanks2{
+                height: 25px;
+                font-family: Noto Sans TC;
+                font-weight: bold;
+                font-size: 22px;
+                color: #666666;
+                margin-left: 100px;
+                margin-bottom: 35px;
+            }
+            .thanks3{
+                height: 20px;
+                font-family: Noto Sans TC;
+                font-weight: normal;
+                font-size: 18px;
+                color: #666666;
+                margin-left: 100px;
+                margin-bottom: 35px;
+            }
+        </style>
+    </head>
+    <body onload="reload();">
+        <header class="header_background">
+            <div class="header">
+                <div class="logo" onclick="location.href='http://18.182.175.66:3000'"><a>台北一日遊</a></div>
+                <nav class="nav">
+                    <button class="nav_1" onclick="location.reload();">
+                        <a class="nav_1_word">預定行程</a>
+                    </button>
+                    <button class="nav_2" onclick="system();" id="nav_2">
+                        <a class="nav_2_word" id="nav_2_word">登入/註冊</a>
+                    </button> 
+                </nav>
+            </div>     
+        </header>
+        <!-- 內容 -->
+        <main class="main">
+            <div class="thanks">
+                <div class="thanks1">感謝訂購</div>
+                <div class="thanks2">您預定的行程如下 : </div>
+                <div class="thanks3" id="number"></div>
+            </div>            
+        </main>
+
+        <!-- 頁尾 -->
+        <footer class="footer">
+            <a class="footer_text">COPYRIGHT © 2021台北一日遊</a>
+        </footer>
+        <!-- 登入系統 -->
+        <div class="system" id="system"></div>
+        <div class="member_box" id="login_box">
+            <hr class="log_bar">
+            <a class="text">登入會員帳號</a><br>
+            <button class="close" onclick="logclose();"></button>           
+            <form target="login_iframe">
+                <div class="input">
+                    <input class="input_input" name="login_email" placeholder="輸入電子信箱" required autocomplete/>
+                </div>
+                <div class="input">
+                    <input class="input_input" name="login_password" placeholder="輸入密碼" type="password" required autocomplete/>
+                </div>
+                <button class="btn" onclick="GetLoginData();">
+                    <a class="btn_text">登入帳戶</a>
+                </button><br>
+                <div class="error" id="log_error"></div>
+            </form>
+            <iframe name="login_iframe" style="display:none;"></iframe>   
+            <button class="change" id="loginchange" onclick="loginchange();">
+                <a>還沒有帳戶 ? 點此註冊</a>
+            </button>
+        </div>
+        <div class="member_box" id="register_box">
+            <hr class="log_bar">
+            <a class="text">註冊會員帳號</a><br>
+            <button class="close" onclick="logclose();"></button>
+            <form target="register_iframe">
+                <div class="input">
+                    <input class="input_input" placeholder="輸入姓名" name="register_name" required autocomplete/>
+                </div>
+                <div class="input">
+                    <input class="input_input" placeholder="輸入電子信箱" name="register_email" required autocomplete/>
+                </div>
+                <div class="input">
+                    <input class="input_input" type="password" placeholder="輸入密碼" name="register_password" required autocomplete/>
+                </div>
+                <button class="btn" onclick="GetRegisterData();">
+                    <a class="btn_text">註冊新帳戶</a>
+                </button><br>
+                <div class="error" id="reg_error"></div>
+            </form>
+            <iframe name="register_iframe" style="display:none;"></iframe> 
+            <button class="change" id="registerchange" onclick="registerchange();">
+                <a>已經有帳戶了 ? 點此登入</a>
+            </button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        function reload(){
+            // 取得登入資訊
+
+            let loadAPIurl = 'http://18.182.175.66:3000/api/user'
+            fetch(loadAPIurl)
+            .then(function(data) {
+                return data.json();
+            }).then(function(res) {
+                if ("data" in res){
+                    user_email = res["data"]["email"];
+                    console.log(res);
+                    login_ok = true;
+                    user_name = res["data"]["name"]
+                    document.getElementById("nav_2_word").innerHTML = "";
+                    let logout = document.getElementById("nav_2_word");
+                    let logout_text = document.createTextNode("【登出系統】");
+                    logout.appendChild(logout_text);
+                    let logout_btn = document.getElementById("nav_2");
+                    logout_btn.onclick = logout_logout
+                    function logout_logout(){
+                        deleteData = {"ok": true}
+                        let logoutAPIurl = 'http://18.182.175.66:3000/api/user'
+                        fetch(logoutAPIurl,{
+                            method:'DELETE',
+                            body:JSON.stringify(deleteData),
+                        })
+                        .then(function(data) {
+                            return data.json();
+                        }).then(function(res) {
+                            if ("ok" in res){
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                else{
+                    console.log(res)
+                    window.location.href='http://18.182.175.66:3000';
+                }
+            });
+            // 取得訂單資訊
+            
+
+            let getUrlString = location.href;
+            let url = new URL(getUrlString);
+            url_number = url.searchParams.get('number')
+            if(url_number == null){
+                window.location.href='http://18.182.175.66:3000/booking';
+            }
+            // console.log(a)
+            document.getElementById("number").innerHTML = "";
+            let number = document.getElementById("number");
+            let number_text = document.createTextNode(`訂單編號 : ${url_number}`);
+            number.appendChild(number_text);
+        }
+
+        // 登入系統
+        function system(){
+            let system_background=document.getElementById("system");
+            system_background.style.display="block";
+            system_background.style.height=document.body.clientHeight+"px";
+            document.getElementById("login_box").style.display="block";
+        }
+        function loginchange(){
+            document.getElementById("login_box").style.display="none";
+            document.getElementById("register_box").style.display="block";
+        }
+        function registerchange(){
+            document.getElementById("register_box").style.display="none";
+            document.getElementById("login_box").style.display="block";
+        }
+        function logclose(){
+            document.getElementById("system").style.display="none";
+            document.getElementById("login_box").style.display="none";
+            document.getElementById("register_box").style.display="none";
+        }
+        // 表單資訊
+        function GetLoginData(){
+            let email = document.getElementsByName("login_email")[0].value;
+            let password = document.getElementsByName("login_password")[0].value;
+            memberData = {"email":email,"password":password}
+            let userAPIurl = "http://18.182.175.66:3000/api/user"
+            
+            fetch(userAPIurl,{
+                method:'PATCH',
+                body:JSON.stringify(memberData),
+            })
+            .then(function(data) {
+                return data.json();
+            }).then(function(res) {
+                // console.log(res);
+                if ("error" in res){
+                    document.getElementById("log_error").innerHTML = "";
+                    let error = document.getElementById("log_error");
+                    let error_text = document.createTextNode(res["message"]);
+                    error.appendChild(error_text);
+                    error.style = "color: red;";
+                }
+                if ("ok" in res){
+                    location.reload();
+                }
+            }); 
+        }
+        function GetRegisterData(){
+            let name = document.getElementsByName("register_name")[0].value;
+            let email = document.getElementsByName("register_email")[0].value;
+            let password = document.getElementsByName("register_password")[0].value;
+            // console.log(name + email + password);
+            memberData = {"name":name,"email":email,"password":password}
+            let userAPIurl = "http://18.182.175.66:3000/api/user"
+
+            fetch(userAPIurl,{
+                method:'POST',
+                body:JSON.stringify(memberData),
+           })
+            .then(function(data) {
+                return data.json();
+            }).then(function(res) {
+                // console.log(res["message"]);
+                if ("error" in res){
+                    document.getElementById("reg_error").innerHTML = "";
+                    let error = document.getElementById("reg_error");
+                    let error_text = document.createTextNode(res["message"]);
+                    error.appendChild(error_text);
+                    error.style = "color: red;";
+                }
+                if ("ok" in res){
+                    document.getElementById("reg_error").innerHTML = "";
+                    let error = document.getElementById("reg_error");
+                    let error_text = document.createTextNode("　恭喜成功註冊會員！");
+                    error.appendChild(error_text);
+                    error.style = "color: #666666;";
+                }
+            });
+        }
+            
+    </script>
+
+</html>
