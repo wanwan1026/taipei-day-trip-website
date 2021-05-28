@@ -498,7 +498,7 @@ def order():
 				}
 			}
 		}
-
+		session["booking"] = False
 		return success
 	if primeStatus != 0 :
 		primenumber = orders_data["data"]["number"]
